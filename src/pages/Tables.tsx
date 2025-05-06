@@ -27,10 +27,10 @@ const Tables = () => {
   const handleStartOrder = () => {
     if (selectedTable) {
       setActiveTable(selectedTable);
-      toast.error("Qo'shildi: ", selectedTable);
+      // toast.error("Qo'shildi: ", selectedTable);
       setShowOrderDialog(false);
       // Navigate to order page
-      // window.location.href = "/new-order";
+      window.location.href = "/new-order";
     }
   };
 
