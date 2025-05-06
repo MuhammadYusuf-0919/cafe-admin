@@ -43,7 +43,9 @@ const NewOrder = () => {
   useEffect(() => {
     if (!loading && !activeTable) {
       toast.error("Please select a table first");
-      navigate("/tables");
+      // navigate("/tables");
+    } else {
+      console.log(activeTable)
     }
   }, [activeTable, loading, navigate]);
 

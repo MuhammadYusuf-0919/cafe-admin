@@ -26,13 +26,16 @@ const Tables = () => {
 
   const handleStartOrder = () => {
     if (selectedTable) {
-      setActiveTable(selectedTable);
-      // toast.error("Qo'shildi: ", selectedTable);
+      console.log("Starting order for table: ", selectedTable);
+      setActiveTable(selectedTable && selectedTable);
       setShowOrderDialog(false);
-      // Navigate to order page
+  
       window.location.href = "/new-order";
+    } else {
+      console.warn("No selected table found");
     }
   };
+  
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -102,9 +105,9 @@ const Tables = () => {
               Select a table to place an order or view its status
             </p>
           </div>
-          <Button 
-            variant="teal" 
-            className="flex items-center gap-2" 
+          <Button
+            variant="teal"
+            className="flex items-center gap-2"
             onClick={() => window.location.href = "/tables-management"}
           >
             Manage Tables <ArrowRight className="h-4 w-4" />
@@ -124,10 +127,10 @@ const Tables = () => {
               animate="visible"
               variants={tableVariants}
               whileHover={{ translateY: -5 }}
-              onClick={() => handleTableSelect(table)}
+
               className="cursor-pointer"
             >
-              <Card className={`${getStatusBg(table.status)} border-2 ${table.status === "free" ? "border-green-400 dark:border-green-700" : "border-transparent"}`}>
+              <Card onClick={() => handleTableSelect(table)} className={`${getStatusBg(table.status)} border-2 ${table.status === "free" ? "border-green-400 dark:border-green-700" : "border-transparent"}`}>
                 <CardContent className="p-6 text-center">
                   <div className="relative mx-auto mb-4">
                     <div className="w-20 h-20 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md mx-auto">
@@ -148,9 +151,9 @@ const Tables = () => {
                   </div>
                   <span
                     className={`inline-block px-2 py-1 rounded-full text-xs font-medium
-                      ${table.status === "free" ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100" : 
-                      table.status === "occupied" ? "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100" : 
-                      "bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100"}
+                      ${table.status === "free" ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100" :
+                        table.status === "occupied" ? "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100" :
+                          "bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100"}
                     `}
                   >
                     {getStatusText(table.status)}
@@ -170,9 +173,8 @@ const Tables = () => {
           <div className="space-y-4 py-4">
             <div className="flex items-center space-x-2">
               <div
-                className={`w-3 h-3 rounded-full ${
-                  selectedTable?.status ? getStatusColor(selectedTable.status) : "bg-gray-500"
-                }`}
+                className={`w-3 h-3 rounded-full ${selectedTable?.status ? getStatusColor(selectedTable.status) : "bg-gray-500"
+                  }`}
               ></div>
               <span className="font-medium capitalize">
                 {selectedTable?.status || "Unknown"}

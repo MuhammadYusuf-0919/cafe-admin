@@ -94,8 +94,12 @@ const MOCK_TABLES: Table[] = [
   { id: '4', number: 4, capacity: 2, status: 'reserved' },
   { id: '5', number: 5, capacity: 4, status: 'free' },
   { id: '6', number: 6, capacity: 8, status: 'free' },
-  { id: '7', number: 7, capacity: 2, status: 'free' },
-  { id: '8', number: 8, capacity: 4, status: 'occupied' }
+  { id: '7', number: 7, capacity: 3, status: 'free' },
+  { id: '8', number: 8, capacity: 6, status: 'occupied' },
+  { id: '9', number: 9, capacity: 4, status: 'reserved' },
+  { id: '10', number: 10, capacity: 8, status: 'free' },
+  { id: '11', number: 11, capacity: 3, status: 'reserved' },
+  { id: '12', number: 12, capacity: 2, status: 'free' },
 ];
 
 const generateMockOrders = (tables: Table[], menuItems: MenuItem[]): Order[] => {

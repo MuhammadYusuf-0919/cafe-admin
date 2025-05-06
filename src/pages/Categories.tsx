@@ -396,7 +396,7 @@ const CategoryCard = ({
           )}
           
           {canManage && (
-            <div className="flex justify-end p-3 bg-white dark:bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex justify-end p-3 bg-white dark:bg-gray-800 group-hover:opacity-100 transition-opacity">
               <Button
                 variant="ghost"
                 size="icon"

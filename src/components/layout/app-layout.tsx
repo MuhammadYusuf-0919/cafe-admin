@@ -19,6 +19,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Toggle } from "../ui/toggle";
+import { UserNav } from "./user-nav";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -262,23 +263,7 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => navigate("/profile")}
-              className="border-0 shadow-md hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-teal-900/20 dark:hover:text-teal-300"
-            >
-              {user?.name || "Profile"}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => logout()}
-              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            >
-              <LogOut className="h-5 w-5" />
-              <span className="sr-only">Logout</span>
-            </Button>
+            <UserNav />
           </div>
         </header>
         <motion.main
