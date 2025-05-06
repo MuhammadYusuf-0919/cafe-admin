@@ -18,6 +18,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Toggle } from "../ui/toggle";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -49,70 +50,35 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
     return location.pathname === path;
   };
 
-  // Role-based navigation items for mobile
   const getMobileNavItems = () => {
-    // Common items for all roles
+    // Boshlanishda faqat umumiy (har bir foydalanuvchi uchun) elementlar:
     const items = [
       {
-        title: "Dashboard",
+        title: "Dashboard", // Har doim boshida
         path: "/dashboard",
         icon: LayoutDashboard,
         permission: { action: "access", subject: "dashboard" }
       },
       {
-        title: "Profile",
+        title: "Profile", // Har doim oxirida bo‘ladi
         path: "/profile",
         icon: User,
         permission: { action: "view", subject: "profile" }
       }
     ];
-
-    // Add role-specific items
+  
+    // Rollarga tegishli elementlarni vaqtincha shu massivga to‘playmiz
+    const roleItems = [];
+  
+    // Manager roli uchun navigatsiyalar
     if (user?.role === "manager") {
-      items.push(
+      roleItems.push(
         {
           title: "Tables",
           path: "/tables",
           icon: Coffee,
           permission: { action: "view", subject: "tables" }
         },
-        {
-          title: "Orders",
-          path: "/orders",
-          icon: ClipboardList,
-          permission: { action: "view", subject: "orders" }
-        },
-        {
-          title: "Menu",
-          path: "/menu",
-          icon: MenuIcon,
-          permission: { action: "view", subject: "menu" }
-        }
-      );
-    } else if (user?.role === "waiter") {
-      items.push(
-        {
-          title: "Tables",
-          path: "/tables",
-          icon: Coffee,
-          permission: { action: "view", subject: "tables" }
-        },
-        {
-          title: "Orders",
-          path: "/orders",
-          icon: ClipboardList,
-          permission: { action: "view", subject: "orders" }
-          // permission: { action: "view", subject: "orders", attributes: { 'waiter.id': user?.id } }
-        },
-        {
-          title: "Menu",
-          path: "/menu",
-          icon: MenuIcon,
-          permission: { action: "view", subject: "menu" }
-        }
-      );
-    } else if (user?.role === "chef") {
-      items.push(
         {
           title: "Orders",
           path: "/orders",
@@ -127,8 +93,51 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
         }
       );
     }
-
-    // Limit to 5 items maximum for mobile nav
+    // Waiter roli uchun navigatsiyalar
+    else if (user?.role === "waiter") {
+      roleItems.push(
+        {
+          title: "Tables",
+          path: "/tables",
+          icon: Coffee,
+          permission: { action: "view", subject: "tables" }
+        },
+        {
+          title: "Orders",
+          path: "/orders",
+          icon: ClipboardList,
+          permission: { action: "view", subject: "orders" }
+        },
+        {
+          title: "Menu",
+          path: "/menu",
+          icon: MenuIcon,
+          permission: { action: "view", subject: "menu" }
+        }
+      );
+    }
+    // Chef roli uchun navigatsiyalar
+    else if (user?.role === "chef") {
+      roleItems.push(
+        {
+          title: "Orders",
+          path: "/orders",
+          icon: ClipboardList,
+          permission: { action: "view", subject: "orders" }
+        },
+        {
+          title: "Menu",
+          path: "/menu",
+          icon: MenuIcon,
+          permission: { action: "view", subject: "menu" }
+        }
+      );
+    }
+  
+    // Role'ga tegishli itemlarni oxirgi (Profile) elementdan oldin joylashtiramiz
+    items.splice(items.length - 1, 0, ...roleItems);
+  
+    // Faqat 5 ta elementgacha cheklaymiz (mobil interfeys uchun)
     return items.slice(0, 5);
   };
 
@@ -281,7 +290,7 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
         >
           {children}
         </motion.main>
-
+{/* 
         {isMobile && (
           <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg p-3 z-50 pb-safe">
             <div className="flex justify-around">
@@ -290,7 +299,7 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
                   key={item.path} 
                   I={item.permission.action} 
                   a={item.permission.subject}
-                  this={item.permission.attributes}
+                  this={item.permission?.attributes}
                 >
                   <Button 
                     variant={isActive(item.path) ? "teal" : "ghost"}
@@ -305,7 +314,42 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
               ))}
             </div>
           </div>
-        )}
+        )} */}
+        {isMobile && (
+  <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg p-3 z-50 pb-safe">
+    <div className="flex justify-around">
+      {mobileNavItems.map((item) => {
+        const active = isActive(item.path); // Hozirgi route bilan solishtirib active status aniqlanadi
+
+        return (
+          <Can 
+            key={item.path}
+            I={item.permission.action}
+            a={item.permission.subject}
+            this={item.permission?.attributes}
+          >
+            <Toggle
+              // variant="ghost" // Har doim ghost variant
+              size="sm"
+              onClick={() => navigate(item.path)}
+              className="flex flex-col items-center space-y-1 p-0"
+            >
+              {/* Icon: active bo‘lsa rang o‘zgaradi */}
+              <item.icon
+                className={`h-5 w-5 ${active ? "text-teal-600 dark:text-teal-400" : "text-gray-500 dark:text-gray-400"}`}
+              />
+              {/* Text: active bo‘lsa rang o‘zgaradi */}
+              <span className={`text-xs ${active ? "text-teal-600 dark:text-teal-400" : "text-gray-500 dark:text-gray-400"}`}>
+                {item.title}
+              </span>
+            </Toggle>
+          </Can>
+        );
+      })}
+    </div>
+  </div>
+)}
+
       </div>
     </div>
   );

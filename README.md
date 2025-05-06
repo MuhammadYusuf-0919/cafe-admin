@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://yourdomain.com (loyihangiz joylanadigan domen)
+**URL**: https://cafe-admin-amber.vercel.app/ (loyihangiz joylanadigan domen)
 
 ## How can I edit this code?
 
