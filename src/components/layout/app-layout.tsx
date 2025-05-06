@@ -152,6 +152,12 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
         permission: { action: "manage", subject: "all" }
       },
       {
+        title: "New Order",
+        path: "/new-order",
+        icon: Tag,
+        permission: { action: "manage", subject: "all" }
+      },
+      {
         title: "Tables Management",
         path: "/tables-management",
         icon: Coffee,

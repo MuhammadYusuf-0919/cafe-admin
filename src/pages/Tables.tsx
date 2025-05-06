@@ -25,7 +25,7 @@ const Tables = () => {
   };
 
   const handleStartOrder = () => {
-    if (selectedTable) {
+    if (selectedTable.id) {
       console.log("Starting order for table: ", selectedTable);
       setActiveTable(selectedTable && selectedTable);
       setShowOrderDialog(false);
