@@ -10,7 +10,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { LogOut, LayoutDashboard, Coffee, ClipboardList, Menu as MenuIcon, User, ChefHat, BarChart, Settings, Tag, Plus } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-mobile";
-import { 
+import {
   Sheet,
   SheetContent,
   SheetDescription,
@@ -67,10 +67,10 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
         permission: { action: "view", subject: "profile" }
       }
     ];
-  
+
     // Rollarga tegishli elementlarni vaqtincha shu massivga to‘playmiz
     const roleItems = [];
-  
+
     // Manager roli uchun navigatsiyalar
     if (user?.role === "manager") {
       roleItems.push(
@@ -134,10 +134,10 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
         }
       );
     }
-  
+
     // Role'ga tegishli itemlarni oxirgi (Profile) elementdan oldin joylashtiramiz
     items.splice(items.length - 1, 0, ...roleItems);
-  
+
     // Faqat 5 ta elementgacha cheklaymiz (mobil interfeys uchun)
     return items.slice(0, 5);
   };
@@ -148,12 +148,6 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
       {
         title: "Categories",
         path: "/categories",
-        icon: Tag,
-        permission: { action: "manage", subject: "all" }
-      },
-      {
-        title: "New Order",
-        path: "/new-order",
         icon: Tag,
         permission: { action: "manage", subject: "all" }
       },
@@ -234,14 +228,14 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
                       </div>
                     </SheetDescription>
                   </SheetHeader>
-                  
+
                   <div className="py-4">
                     <div className="space-y-1">
                       {/* Show all navigation items in sidebar */}
                       {[...mobileNavItems, ...overflowItems].map((item) => (
-                        <Can 
-                          key={item.path} 
-                          I={item.permission.action} 
+                        <Can
+                          key={item.path}
+                          I={item.permission.action}
                           a={item.permission.subject}
                           this={item.permission.attributes}
                         >
@@ -262,7 +256,7 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
                 </SheetContent>
               </Sheet>
             )}
-            
+
             <h1 className="text-xl font-semibold bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">
               {title || "Restaurant Management System"}
             </h1>
@@ -281,7 +275,7 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
         >
           {children}
         </motion.main>
-{/* 
+        {/* 
         {isMobile && (
           <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg p-3 z-50 pb-safe">
             <div className="flex justify-around">
@@ -307,39 +301,39 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
           </div>
         )} */}
         {isMobile && (
-  <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg p-3 z-50 pb-safe">
-    <div className="flex justify-around">
-      {mobileNavItems.map((item) => {
-        const active = isActive(item.path); // Hozirgi route bilan solishtirib active status aniqlanadi
+          <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg p-3 z-50 pb-safe">
+            <div className="flex justify-around">
+              {mobileNavItems.map((item) => {
+                const active = isActive(item.path); // Hozirgi route bilan solishtirib active status aniqlanadi
 
-        return (
-          <Can 
-            key={item.path}
-            I={item.permission.action}
-            a={item.permission.subject}
-            this={item.permission?.attributes}
-          >
-            <Toggle
-              // variant="ghost" // Har doim ghost variant
-              size="sm"
-              onClick={() => navigate(item.path)}
-              className="flex flex-col items-center space-y-1 p-0"
-            >
-              {/* Icon: active bo‘lsa rang o‘zgaradi */}
-              <item.icon
-                className={`h-5 w-5 ${active ? "text-teal-600 dark:text-teal-400" : "text-gray-500 dark:text-gray-400"}`}
-              />
-              {/* Text: active bo‘lsa rang o‘zgaradi */}
-              <span className={`text-xs ${active ? "text-teal-600 dark:text-teal-400" : "text-gray-500 dark:text-gray-400"}`}>
-                {item.title}
-              </span>
-            </Toggle>
-          </Can>
-        );
-      })}
-    </div>
-  </div>
-)}
+                return (
+                  <Can
+                    key={item.path}
+                    I={item.permission.action}
+                    a={item.permission.subject}
+                    this={item.permission?.attributes}
+                  >
+                    <Toggle
+                      // variant="ghost" // Har doim ghost variant
+                      size="sm"
+                      onClick={() => navigate(item.path)}
+                      className="flex flex-col items-center space-y-1 p-"
+                    >
+                      {/* Icon: active bo‘lsa rang o‘zgaradi */}
+                      <item.icon
+                        className={`h-5 w-5 ${active ? "text-teal-600 dark:text-teal-400" : "text-gray-500 dark:text-gray-400"}`}
+                      />
+                      {/* Text: active bo‘lsa rang o‘zgaradi */}
+                      <span className={`text-xs ${active ? "text-teal-600 dark:text-teal-400" : "text-gray-500 dark:text-gray-400"}`}>
+                        {item.title}
+                      </span>
+                    </Toggle>
+                  </Can>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
       </div>
     </div>

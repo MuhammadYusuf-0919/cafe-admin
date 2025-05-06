@@ -153,8 +153,8 @@ const NewOrder = () => {
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
             <TabsList className="mb-4">
-              <TabsTrigger value="menu" className="flex-1 bg-primary">Menu</TabsTrigger>
-              <TabsTrigger value="cart" className="flex-1 bg-primary md:hidden">
+              <TabsTrigger value="menu" className="flex-1">Menu</TabsTrigger>
+              <TabsTrigger value="cart" className="flex-1 md:hidden">
                 Cart ({cart.length})
               </TabsTrigger>
             </TabsList>
