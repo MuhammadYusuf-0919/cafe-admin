@@ -220,7 +220,7 @@ const ManagerDashboard = () => {
       title: "Staff Overview",
       description: "View staff performance and schedules",
       icon: <Users className="h-6 w-6" />,
-      action: () => navigate("/staff"),
+      action: () => navigate("/staff-overview"),
     },
     {
       title: "Sales Reports",
