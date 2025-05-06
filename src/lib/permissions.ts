@@ -25,6 +25,7 @@ export const definePermissions = (user: User | null) => {
       can('view', 'reports');
       can('complete', 'order');
       can('archive', 'order');
+      can('create', 'new-order');
       can('view', 'orders');
       can('view', 'profile');
     }
@@ -34,6 +35,7 @@ export const definePermissions = (user: User | null) => {
       can('access', 'dashboard');
       can('view', 'tables');
       can('create', 'order');
+      can('create', 'new-order');
       can('update', 'order');
       can('view', 'menu');
       can('view', 'orders', { 'waiter.id': user?.id });

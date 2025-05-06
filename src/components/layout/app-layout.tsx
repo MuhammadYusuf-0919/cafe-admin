@@ -101,7 +101,15 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
           title: "Orders",
           path: "/orders",
           icon: ClipboardList,
+          // permission: { action: "view", subject: "orders" }
           permission: { action: "view", subject: "orders", attributes: { 'waiter.id': user?.id } }
+        },
+        {
+          title: "Orders",
+          path: "/new-order",
+          icon: ClipboardList,
+          // permission: { action: "view", subject: "orders" }
+          permission: { action: "view", subject: "new-order",}
         },
         {
           title: "Menu",
