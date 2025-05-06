@@ -9,6 +9,7 @@ import { TablesSkeleton } from "@/components/skeleton-loader";
 import { Plus, Coffee, ArrowRight, User, Users } from "lucide-react";
 import { Table } from "@/types";
 import { useMediaQuery } from "@/hooks/use-mobile";
+import { toast } from "sonner";
 
 const Tables = () => {
   const { tables, menuItems, categories, activeTable, setActiveTable, loading } = useData();
@@ -17,7 +18,7 @@ const Tables = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleTableSelect = (table: Table) => {
-    if (table.status === "free" || table.status === "occupied") {
+    if (table.status == "free" || table.status == "occupied") {
       setSelectedTable(table);
       setShowOrderDialog(true);
     }
@@ -26,9 +27,10 @@ const Tables = () => {
   const handleStartOrder = () => {
     if (selectedTable) {
       setActiveTable(selectedTable);
+      toast.error("Qo'shildi: ", selectedTable);
       setShowOrderDialog(false);
       // Navigate to order page
-      window.location.href = "/new-order";
+      // window.location.href = "/new-order";
     }
   };
 
