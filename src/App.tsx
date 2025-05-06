@@ -38,7 +38,7 @@ const App = () => (
           <AuthProvider>
             <DataProvider>
               <Toaster />
-              <Sonner />
+              <Sonner position="top-center" />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/login" element={<Login />} />
