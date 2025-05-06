@@ -436,7 +436,7 @@ const TableCard = ({
           </span>
         </div>
         
-        <div className="flex justify-center mt-3 space-x-2 pt-3 border-t border-gray-100 dark:border-gray-800 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex justify-center mt-3 space-x-2 pt-3 border-t border-gray-100 dark:border-gray-800 group-hover:opacity-100 transition-opacity">
           <Button
             variant="ghost"
             size="icon"
