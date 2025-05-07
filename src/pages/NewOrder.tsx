@@ -20,6 +20,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Category, MenuItem } from "@/types";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const NewOrder = () => {
   const { 
@@ -184,9 +185,9 @@ const NewOrder = () => {
                 </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto pr-2 mt-4">
+              <ScrollArea className="flex-1 overflow-y-auto pr-2 mt-4">
                 <motion.div 
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-4"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -259,7 +260,7 @@ const NewOrder = () => {
                     </div>
                   )}
                 </motion.div>
-              </div>
+              </ScrollArea>
             </TabsContent>
 
             <TabsContent value="cart" className="md:hidden flex-1 flex flex-col">
@@ -329,7 +330,7 @@ const CartPanel = ({
           </p>
         </div>
       ) : (
-        <>
+        <ScrollArea className="flex-1">
           <div className="flex-1 overflow-y-auto">
             <AnimatePresence>
               {cart.map((item, index) => (
@@ -434,7 +435,7 @@ const CartPanel = ({
               Place Order <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
-        </>
+        </ScrollArea>
       )}
     </div>
   );

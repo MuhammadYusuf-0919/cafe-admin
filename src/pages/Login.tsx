@@ -36,9 +36,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const demoAccounts = [
-  { email: "manager@mesa.com", password: "manager123", role: "Manager" },
-  { email: "chef@mesa.com", password: "chef123", role: "Chef" },
-  { email: "waiter@mesa.com", password: "waiter123", role: "Waiter" },
+  { email: "manager@mesa.com", password: "manager123", role: "Menejer" },
+  { email: "chef@mesa.com", password: "chef123", role: "Oshpaz" },
+  { email: "waiter@mesa.com", password: "waiter123", role: "Ofitsiant" },
 ];
 
 const Login = () => {
@@ -88,7 +88,7 @@ const Login = () => {
         className="w-full max-w-md"
       >
         <div className="mb-8 text-center">
-          <motion.div 
+          <motion.div
             className="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -97,14 +97,14 @@ const Login = () => {
             <Utensils className="text-white h-8 w-8" />
           </motion.div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Mesa Order Oasis</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Restaurant Management System</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Restoran Boshqaruv Tizimi</p>
         </div>
 
         <Card className="border-none shadow-xl glass-card">
           <CardHeader>
-            <CardTitle className="text-center">Login</CardTitle>
+            <CardTitle className="text-center">Kirish</CardTitle>
             <CardDescription className="text-center">
-              Enter your credentials to access your account
+              Tizimga kirish uchun ma'lumotlaringizni kiriting
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -156,7 +156,7 @@ const Login = () => {
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             <div className="text-sm text-center text-gray-500 dark:text-gray-400">
-              Demo accounts available:
+            Demo hisoblar:
             </div>
             <div className="grid grid-cols-3 gap-2 w-full">
               {demoAccounts.map((account) => (

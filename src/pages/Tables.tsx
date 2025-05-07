@@ -68,15 +68,15 @@ const Tables = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case "free":
-        return "Available";
+        return "Bo'sh";
       case "occupied":
-        return "Occupied";
+        return "Band";
       case "reserved":
-        return "Reserved";
+        return "Bron qilingan";
       default:
         return status;
     }
-  };
+  }
 
   // Animation variants
   const tableVariants = {
@@ -110,7 +110,7 @@ const Tables = () => {
           <Button
             variant="teal"
             className="flex items-center gap-2"
-            onClick={() => window.location.href = "/tables-management"}
+            onClick={() => navigate("/tables-management")}
           >
             Manage Tables <ArrowRight className="h-4 w-4" />
           </Button>
