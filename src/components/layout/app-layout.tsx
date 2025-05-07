@@ -55,13 +55,13 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
     // Boshlanishda faqat umumiy (har bir foydalanuvchi uchun) elementlar:
     const items = [
       {
-        title: "Dashboard", // Har doim boshida
+        title: "Bosh sahifa", // Har doim boshida
         path: "/dashboard",
         icon: LayoutDashboard,
         permission: { action: "access", subject: "dashboard" }
       },
       {
-        title: "Profile", // Har doim oxirida bo‘ladi
+        title: "Profil", // Har doim oxirida bo‘ladi
         path: "/profile",
         icon: User,
         permission: { action: "view", subject: "profile" }
@@ -75,19 +75,19 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
     if (user?.role === "manager") {
       roleItems.push(
         {
-          title: "Tables",
+          title: "Stollar",
           path: "/tables",
           icon: Coffee,
           permission: { action: "view", subject: "tables" }
         },
         {
-          title: "Orders",
+          title: "Buyurtmalar",
           path: "/orders",
           icon: ClipboardList,
           permission: { action: "view", subject: "orders" }
         },
         {
-          title: "Menu",
+          title: "Menyu",
           path: "/menu",
           icon: MenuIcon,
           permission: { action: "view", subject: "menu" }
@@ -98,19 +98,19 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
     else if (user?.role === "waiter") {
       roleItems.push(
         {
-          title: "Tables",
+          title: "Stollar",
           path: "/tables",
           icon: Coffee,
           permission: { action: "view", subject: "tables" }
         },
         {
-          title: "Orders",
+          title: "Buyurtmalar",
           path: "/orders",
           icon: ClipboardList,
           permission: { action: "view", subject: "orders" }
         },
         {
-          title: "Menu",
+          title: "Menyu",
           path: "/menu",
           icon: MenuIcon,
           permission: { action: "view", subject: "menu" }
@@ -121,13 +121,13 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
     else if (user?.role === "chef") {
       roleItems.push(
         {
-          title: "Orders",
+          title: "Buyurtmalar",
           path: "/orders",
           icon: ClipboardList,
           permission: { action: "view", subject: "orders" }
         },
         {
-          title: "Menu",
+          title: "Menyu",
           path: "/menu",
           icon: MenuIcon,
           permission: { action: "view", subject: "menu" }
@@ -146,31 +146,31 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
   const getOverflowItems = () => {
     const allItems = [
       {
-        title: "Categories",
+        title: "Kategoriyalar",
         path: "/categories",
         icon: Tag,
         permission: { action: "manage", subject: "all" }
       },
       {
-        title: "Tables Management",
+        title: "Stollar boshqaruvi",
         path: "/tables-management",
         icon: Coffee,
         permission: { action: "manage", subject: "all" }
       },
       {
-        title: "Staff Overview",
+        title: "Xodimlar",
         path: "/staff-overview",
         icon: User,
         permission: { action: "manage", subject: "all" }
       },
       {
-        title: "Reports",
+        title: "Hisobotlar",
         path: "/reports",
         icon: BarChart,
         permission: { action: "manage", subject: "all" }
       },
       {
-        title: "Settings",
+        title: "Sozlamalar",
         path: "/settings",
         icon: Settings,
         permission: { action: "manage", subject: "all" }

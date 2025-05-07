@@ -10,8 +10,10 @@ import { Plus, Coffee, ArrowRight, User, Users } from "lucide-react";
 import { Table } from "@/types";
 import { useMediaQuery } from "@/hooks/use-mobile";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Tables = () => {
+  const navigate = useNavigate();
   const { tables, menuItems, categories, activeTable, setActiveTable, loading } = useData();
   const [selectedTable, setSelectedTable] = useState<Table | null>(null);
   const [showOrderDialog, setShowOrderDialog] = useState(false);
@@ -30,7 +32,7 @@ const Tables = () => {
       setActiveTable(selectedTable && selectedTable);
       setShowOrderDialog(false);
   
-      window.location.href = "/new-order";
+      navigate("/new-order");
     } else {
       console.warn("No selected table found");
     }

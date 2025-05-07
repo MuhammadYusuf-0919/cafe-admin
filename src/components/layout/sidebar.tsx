@@ -72,7 +72,7 @@ export const Sidebar = () => {
           <nav className="space-y-1">
             <SidebarItem
               icon={<LayoutDashboard className="h-5 w-5" />}
-              text="Dashboard"
+              text="Bosh sahifa"
               onClick={() => navigate("/dashboard")}
               active={isActive("/dashboard")}
             />
@@ -80,7 +80,7 @@ export const Sidebar = () => {
             <Can I="view" a="tables">
               <SidebarItem
                 icon={<Coffee className="h-5 w-5" />}
-                text="Tables"
+                text="Stollar"
                 onClick={() => navigate("/tables")}
                 active={isActive("/tables")}
               />
@@ -89,7 +89,7 @@ export const Sidebar = () => {
             <Can I="view" a="orders">
               <SidebarItem
                 icon={<ClipboardList className="h-5 w-5" />}
-                text="Orders"
+                text="Buyurtmalar"
                 onClick={() => navigate("/orders")}
                 active={isActive("/orders")}
               />
@@ -98,7 +98,7 @@ export const Sidebar = () => {
             <Can I="view" a="menu">
               <SidebarItem
                 icon={<MenuIcon className="h-5 w-5" />}
-                text="Menu"
+                text="Menyu"
                 onClick={() => navigate("/menu")}
                 active={isActive("/menu")}
               />
@@ -107,35 +107,35 @@ export const Sidebar = () => {
             <Can I="manage" a="all">
               <SidebarItem
                 icon={<Tag className="h-5 w-5" />}
-                text="Categories"
+                text="Kategoriyalar"
                 onClick={() => navigate("/categories")}
                 active={isActive("/categories")}
               />
 
               <SidebarItem
                 icon={<LayoutGrid className="h-5 w-5" />}
-                text="Tables Management"
+                text="Stollar boshqaruvi"
                 onClick={() => navigate("/tables-management")}
                 active={isActive("/tables-management")}
               />
 
               <SidebarItem
                 icon={<Users className="h-5 w-5" />}
-                text="Staff Overview"
+                text="Xodimlar"
                 onClick={() => navigate("/staff-overview")}
                 active={isActive("/staff-overview")}
               />
 
               <SidebarItem
                 icon={<BarChart className="h-5 w-5" />}
-                text="Reports"
+                text="Hisobotlar"
                 onClick={() => navigate("/reports")}
                 active={isActive("/reports")}
               />
 
               <SidebarItem
                 icon={<Settings className="h-5 w-5" />}
-                text="Settings"
+                text="Sozlamalar"
                 onClick={() => navigate("/settings")}
                 active={isActive("/settings")}
               />
