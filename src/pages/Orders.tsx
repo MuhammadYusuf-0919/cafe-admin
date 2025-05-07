@@ -761,94 +761,95 @@ const Orders = () => {
           </DialogHeader>
 
           {detailsOrder && (
-            <ScrollArea className="flex-1">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <Card>
-                  <CardContent className="p-5">
-                    <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma ma'lumotlari</h3>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
-                        <span className="text-gray-500 dark:text-gray-400">Holati</span>
-                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(detailsOrder.status)}`}>
-                          {translateStatus(detailsOrder.status)}
-                        </span>
+            <>
+              <ScrollArea className="flex-1 h-[400px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <Card>
+                    <CardContent className="p-5">
+                      <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma ma'lumotlari</h3>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
+                          <span className="text-gray-500 dark:text-gray-400">Holati</span>
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(detailsOrder.status)}`}>
+                            {translateStatus(detailsOrder.status)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
+                          <span className="text-gray-500 dark:text-gray-400">Buyurtma sanasi</span>
+                          <span>{format(new Date(detailsOrder.createdAt), "yyyy.MM.dd • HH:mm")}</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
+                          <span className="text-gray-500 dark:text-gray-400">Umumiy summa</span>
+                          <span className="font-semibold">${detailsOrder.total.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-500 dark:text-gray-400">Taomlar soni</span>
+                          <span>{detailsOrder.items.length} ta</span>
+                        </div>
                       </div>
-                      <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
-                        <span className="text-gray-500 dark:text-gray-400">Buyurtma sanasi</span>
-                        <span>{format(new Date(detailsOrder.createdAt), "yyyy.MM.dd • HH:mm")}</span>
-                      </div>
-                      <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
-                        <span className="text-gray-500 dark:text-gray-400">Umumiy summa</span>
-                        <span className="font-semibold">${detailsOrder.total.toFixed(2)}</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-500 dark:text-gray-400">Taomlar soni</span>
-                        <span>{detailsOrder.items.length} ta</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
 
-                <Card>
-                  <CardContent className="p-5">
-                    <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Ofitsiant ma'lumotlari</h3>
-                    <div className="flex items-center space-x-4">
-                      <Avatar className="h-12 w-12 border-2 border-teal-200 dark:border-teal-900">
-                        <AvatarFallback className="bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300">
-                          {detailsOrder.waiter.name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <h4 className="font-medium">{detailsOrder.waiter.name}</h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          ID: {detailsOrder.waiter.id}
-                        </p>
-                        <Badge variant="outline" className="mt-1">
-                          {detailsOrder.waiter.role === "manager" ? "Menejer" :
-                            detailsOrder.waiter.role === "waiter" ? "Ofitsiant" : "Oshpaz"}
-                        </Badge>
+                  <Card>
+                    <CardContent className="p-5">
+                      <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Ofitsiant ma'lumotlari</h3>
+                      <div className="flex items-center space-x-4">
+                        <Avatar className="h-12 w-12 border-2 border-teal-200 dark:border-teal-900">
+                          <AvatarFallback className="bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300">
+                            {detailsOrder.waiter.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h4 className="font-medium">{detailsOrder.waiter.name}</h4>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            ID: {detailsOrder.waiter.id}
+                          </p>
+                          <Badge variant="outline" className="mt-1">
+                            {detailsOrder.waiter.role === "manager" ? "Menejer" :
+                              detailsOrder.waiter.role === "waiter" ? "Ofitsiant" : "Oshpaz"}
+                          </Badge>
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+                    </CardContent>
+                  </Card>
+                </div>
 
-              <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma tarkibi</h3>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Taom</TableHead>
-                    <TableHead>Miqdori</TableHead>
-                    <TableHead>Narxi</TableHead>
-                    <TableHead>Holati</TableHead>
-                    <TableHead>Jami</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {detailsOrder.items.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell className="font-medium">{item.menuItem.name}</TableCell>
-                      <TableCell>{item.quantity}</TableCell>
-                      <TableCell>${item.menuItem.price.toFixed(2)}</TableCell>
-                      <TableCell>
-                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(item.status)}`}>
-                          {translateStatus(item.status)}
-                        </span>
-                      </TableCell>
-                      <TableCell className="font-medium">
-                        ${(item.quantity * item.menuItem.price).toFixed(2)}
-                      </TableCell>
+                <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma tarkibi</h3>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Taom</TableHead>
+                      <TableHead>Miqdori</TableHead>
+                      <TableHead>Narxi</TableHead>
+                      <TableHead>Holati</TableHead>
+                      <TableHead>Jami</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    <TableCell colSpan={4} className="text-right">Jami</TableCell>
-                    <TableCell className="font-semibold">${detailsOrder.total.toFixed(2)}</TableCell>
-                  </TableRow>
-                </TableFooter>
-              </Table>
-
+                  </TableHeader>
+                  <TableBody>
+                    {detailsOrder.items.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell className="font-medium">{item.menuItem.name}</TableCell>
+                        <TableCell>{item.quantity}</TableCell>
+                        <TableCell>${item.menuItem.price.toFixed(2)}</TableCell>
+                        <TableCell>
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(item.status)}`}>
+                            {translateStatus(item.status)}
+                          </span>
+                        </TableCell>
+                        <TableCell className="font-medium">
+                          ${(item.quantity * item.menuItem.price).toFixed(2)}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                  <TableFooter>
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-right">Jami</TableCell>
+                      <TableCell className="font-semibold">${detailsOrder.total.toFixed(2)}</TableCell>
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </ScrollArea>
               <div className="flex justify-end mt-6 space-x-2">
                 <Button variant="outline" onClick={() => setIsDetailsOpen(false)}>Yopish</Button>
 
@@ -902,7 +903,8 @@ const Orders = () => {
                   </>
                 )}
               </div>
-            </ScrollArea>
+            </>
+
           )}
         </DialogContent>
       </Dialog>
