@@ -751,8 +751,8 @@ const Orders = () => {
       </motion.div>
 
       {/* Order Details Modal */}
-      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
-        <DialogContent className="sm:max-w-3xl">
+      {/* <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
+        <DialogContent className="max-w-3xl">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Coffee className="h-5 w-5 text-teal-500" />
@@ -762,8 +762,8 @@ const Orders = () => {
 
           {detailsOrder && (
             <>
-              <ScrollArea className="flex-1 h-[400px] px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <ScrollArea className="h-[400px] px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 gap-4 md:mb-6 mb-4">
                   <Card>
                     <CardContent className="p-5">
                       <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma ma'lumotlari</h3>
@@ -855,7 +855,7 @@ const Orders = () => {
 
                 {detailsOrder.status === "active" && (
                   <>
-                    {/* Manager can complete/cancel orders */}
+                    Manager can complete/cancel orders
                     {user?.role === "manager" && (
                       <>
                         <Button
@@ -886,7 +886,7 @@ const Orders = () => {
                       </>
                     )}
 
-                    {/* Waiter can mark order as completed */}
+                    Waiter can mark order as completed
                     {user?.role === "waiter" && detailsOrder.items.every(item => item.status === 'served') && (
                       <Button
                         variant="teal"
@@ -905,6 +905,166 @@ const Orders = () => {
               </div>
             </>
 
+          )}
+        </DialogContent>
+      </Dialog> */}
+      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Coffee className="h-5 w-5 text-teal-500" />
+              Buyurtma tafsilotlari - Stol {detailsOrder?.table.number}
+            </DialogTitle>
+          </DialogHeader>
+
+          {detailsOrder && (
+            <>
+              <ScrollArea className="h-[400px] px-4">
+                {/* Buyurtma va ofitsiant ma'lumotlari */}
+                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 gap-4 md:mb-6 mb-4">
+                  {/* Buyurtma ma'lumotlari */}
+                  <Card>
+                    <CardContent className="p-5">
+                      <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">
+                        Buyurtma ma'lumotlari
+                      </h3>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
+                          <span className="text-gray-500 dark:text-gray-400">Holati</span>
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(detailsOrder.status)}`}>
+                            {translateStatus(detailsOrder.status)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
+                          <span className="text-gray-500 dark:text-gray-400">Buyurtma sanasi</span>
+                          <span>{format(new Date(detailsOrder.createdAt), "yyyy.MM.dd • HH:mm")}</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-2">
+                          <span className="text-gray-500 dark:text-gray-400">Umumiy summa</span>
+                          <span className="font-semibold">${detailsOrder.total.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-500 dark:text-gray-400">Taomlar soni</span>
+                          <span>{detailsOrder.items.length} ta</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Ofitsiant ma'lumotlari */}
+                  <Card>
+                    <CardContent className="p-5">
+                      <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Ofitsiant ma'lumotlari</h3>
+                      <div className="flex items-center space-x-4">
+                        <Avatar className="h-12 w-12 border-2 border-teal-200 dark:border-teal-900">
+                          <AvatarFallback className="bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300">
+                            {detailsOrder.waiter.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h4 className="font-medium">{detailsOrder.waiter.name}</h4>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            ID: {detailsOrder.waiter.id}
+                          </p>
+                          <Badge variant="outline" className="mt-1">
+                            {detailsOrder.waiter.role === "manager" ? "Menejer" :
+                              detailsOrder.waiter.role === "waiter" ? "Ofitsiant" : "Oshpaz"}
+                          </Badge>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Buyurtma tarkibi */}
+                <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma tarkibi</h3>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Taom</TableHead>
+                      <TableHead>Miqdori</TableHead>
+                      <TableHead>Narxi</TableHead>
+                      <TableHead>Holati</TableHead>
+                      <TableHead>Jami</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {detailsOrder.items.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell className="font-medium">{item.menuItem.name}</TableCell>
+                        <TableCell>{item.quantity}</TableCell>
+                        <TableCell>${item.menuItem.price.toFixed(2)}</TableCell>
+                        <TableCell>
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(item.status)}`}>
+                            {translateStatus(item.status)}
+                          </span>
+                        </TableCell>
+                        <TableCell className="font-medium">
+                          ${(item.quantity * item.menuItem.price).toFixed(2)}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                  <TableFooter>
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-right">Jami</TableCell>
+                      <TableCell className="font-semibold">${detailsOrder.total.toFixed(2)}</TableCell>
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </ScrollArea>
+
+              {/* Tugmalar */}
+              <div className="flex flex-col sm:flex-row justify-end mt-6 gap-2 sm:gap-2">
+                {/* Yopish + Bekor qilish tugmalari */}
+                <div className="flex flex-row gap-2 sm:gap-2 sm:items-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsDetailsOpen(false)}
+                    className="w-full sm:w-auto"
+                  >
+                    Yopish
+                  </Button>
+
+                  {detailsOrder.status === "active" && user?.role === "manager" && (
+                    <Button
+                      variant="destructive"
+                      onClick={() => {
+                        cancelOrder(detailsOrder.id);
+                        setIsDetailsOpen(false);
+                        toast.info(`Stol ${detailsOrder.table.number} uchun buyurtma bekor qilindi`);
+                      }}
+                      className="w-full sm:w-auto bg-red-600"
+                    >
+                      <XCircle className="h-4 w-4 mr-1" />
+                      Bekor qilish
+                    </Button>
+                  )}
+                </div>
+
+                {/* Yakunlash tugmasi – har doim keyingi qatorda turadi mobilda */}
+                {(detailsOrder.status === "active" &&
+                  (user?.role === "manager" || user?.role === "waiter") &&
+                  detailsOrder.items.every(item => item.status === 'served')) && (
+                    <div className="mt-2 sm:mt-0 sm:ml-2">
+                      <Button
+                        variant="teal"
+                        onClick={() => {
+                          completeOrder(detailsOrder.id);
+                          setIsDetailsOpen(false);
+                          toast.success(`Stol ${detailsOrder.table.number} uchun buyurtma yakunlandi`);
+                        }}
+                        className="w-full sm:w-auto"
+                      >
+                        <CheckCircle2 className="h-4 w-4 mr-1" />
+                        Yakunlash
+                      </Button>
+                    </div>
+                  )}
+              </div>
+
+
+            </>
           )}
         </DialogContent>
       </Dialog>
