@@ -762,7 +762,7 @@ const Orders = () => {
 
           {detailsOrder && (
             <>
-              <ScrollArea className="flex-1 h-[400px]">
+              <ScrollArea className="flex-1 h-[400px] px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <Card>
                     <CardContent className="p-5">
