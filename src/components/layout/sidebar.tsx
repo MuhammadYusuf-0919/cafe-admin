@@ -32,7 +32,7 @@ export const Sidebar = () => {
 
   return (
     <motion.div
-      className="h-screen w-64 bg-sidebar flex flex-col border-r border-gray-200 dark:border-gray-800"
+      className="h-screen w-64 sticky top-0 right-0 left-0 bg-sidebar flex flex-col border-r border-gray-200 dark:border-gray-800"
       initial={{ x: -280 }}
       animate={{ x: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}

@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/sheet";
 import { Toggle } from "../ui/toggle";
 import { UserNav } from "./user-nav";
+import { cn } from "@/lib/utils";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -32,6 +33,16 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
   const location = useLocation();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -187,7 +198,14 @@ export const AppLayout = ({ children, title }: AppLayoutProps) => {
     <div className="min-h-screen flex">
       {!isMobile && <Sidebar />}
       <div className="flex-1 flex flex-col">
-        <header className="h-16 bg-white dark:bg-gray-900 shadow-sm flex items-center justify-between px-6 z-10">
+        <header
+          className={cn(
+            'h-16 sticky top-0 left-0 right-0 z-10 flex items-center justify-between px-6 transition-colors duration-300',
+            scrolled
+              ? 'backdrop-blur-md shadow-sm'
+              : 'bg-white dark:bg-gray-900'
+          )}
+        >
           <div className="flex items-center">
             {isMobile && (
               <Sheet>

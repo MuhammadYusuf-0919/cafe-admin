@@ -7,11 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { OrderSkeleton, TablesSkeleton } from "@/components/skeleton-loader";
-import { 
-  ChefHat, 
-  Users, 
-  Coffee, 
-  ClipboardList, 
+import {
+  ChefHat,
+  Users,
+  Coffee,
+  ClipboardList,
   Menu,
   ArrowRight,
   Clock,
@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   // Calculated statistics
   const activeOrders = orders.filter(order => order.status === "active").length;
-  const pendingItems = orders.flatMap(order => 
+  const pendingItems = orders.flatMap(order =>
     order.items.filter(item => item.status === "pending")
   ).length;
   const occupiedTables = tables.filter(table => table.status === "occupied").length;
@@ -41,7 +41,7 @@ const Dashboard = () => {
       case "waiter":
         return <WaiterDashboard />;
       default:
-        return <div>Unknown role</div>;
+        return <div>Noma'lum rol</div>;
     }
   };
 
@@ -68,10 +68,10 @@ const Dashboard = () => {
     <AppLayout title="Dashboard">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">
-          Welcome, {user?.name || "User"}!
+          Xush kelibsiz, {user?.name || "Foydalanuvchi"}!
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Here's what's happening at Mesa Order Oasis today
+          Bugun Mesa Order Oasisda nimalar sodir bo'lmoqda
         </p>
       </div>
 
@@ -129,7 +129,7 @@ const Dashboard = () => {
                     {iconMap.activeOrders}
                     <span className="text-3xl font-bold">{activeOrders}</span>
                   </div>
-                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Active Orders</h3>
+                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Faol buyurtmalar</h3>
                 </CardContent>
               </Card>
             </motion.div>
@@ -146,7 +146,7 @@ const Dashboard = () => {
                     {iconMap.pendingItems}
                     <span className="text-3xl font-bold">{pendingItems}</span>
                   </div>
-                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Pending Items</h3>
+                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Kutilayotgan elementlar</h3>
                 </CardContent>
               </Card>
             </motion.div>
@@ -163,7 +163,7 @@ const Dashboard = () => {
                     {iconMap.occupiedTables}
                     <span className="text-3xl font-bold">{occupiedTables}/{tables.length}</span>
                   </div>
-                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Occupied Tables</h3>
+                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Band qilingan stollar</h3>
                 </CardContent>
               </Card>
             </motion.div>
@@ -180,7 +180,7 @@ const Dashboard = () => {
                     {iconMap.completedOrders}
                     <span className="text-3xl font-bold">{completedOrders}</span>
                   </div>
-                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Completed Orders</h3>
+                  <h3 className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">Tugallangan buyurtmalar</h3>
                 </CardContent>
               </Card>
             </motion.div>
@@ -202,29 +202,29 @@ const Dashboard = () => {
 const ManagerDashboard = () => {
   const { orders, tables, categories, menuItems } = useData();
   const navigate = useNavigate();
-  
+
   const quickLinks = [
     {
-      title: "Menu Management",
-      description: "Add, edit, or remove menu items and categories",
+      title: "Menyu boshqaruvi",
+      description: "Menyu elementlari va toifalarini qo'shish, tahrirlash yoki o'chirish",
       icon: <Menu className="h-6 w-6" />,
       action: () => navigate("/menu"),
     },
     {
-      title: "Table Management",
-      description: "Manage restaurant tables and layout",
+      title: "Stollar boshqaruvi",
+      description: "Restoran stollari va tartibini boshqaring",
       icon: <Coffee className="h-6 w-6" />,
       action: () => navigate("/tables-management"),
     },
     {
-      title: "Staff Overview",
-      description: "View staff performance and schedules",
+      title: "Xodimlar haqida umumiy ma'lumot",
+      description: "Xodimlarning ishlashi va jadvallarini ko'ring",
       icon: <Users className="h-6 w-6" />,
       action: () => navigate("/staff-overview"),
     },
     {
-      title: "Sales Reports",
-      description: "Analyze daily and monthly sales",
+      title: "Sotish hisobotlari",
+      description: "Kundalik va oylik savdoni tahlil qiling",
       icon: <ClipboardList className="h-6 w-6" />,
       action: () => navigate("/reports"),
     },
@@ -233,17 +233,18 @@ const ManagerDashboard = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
+        <h2 className="text-xl font-semibold mb-4">Tezkor harakatlar</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickLinks.map((link, i) => (
             <motion.div
               key={i}
+              className="h-full"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1 + 0.2 }}
             >
-              <Card 
-                className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              <Card
+                className="h-full cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                 onClick={link.action}
               >
                 <CardContent className="p-6">
@@ -267,13 +268,13 @@ const ManagerDashboard = () => {
         <Card className="shadow-md">
           <CardHeader>
             <CardTitle className="flex justify-between items-center">
-              <span>Recent Orders</span>
+              <span>Oxirgi buyurtmalar</span>
               <Button
                 variant="ghost"
                 className="text-restaurant-primary flex items-center gap-1 text-sm"
                 onClick={() => navigate("/orders")}
               >
-                View All <ArrowRight className="h-4 w-4" />
+                Hammasini ko‘rish <ArrowRight className="h-4 w-4" />
               </Button>
             </CardTitle>
           </CardHeader>
@@ -289,7 +290,7 @@ const ManagerDashboard = () => {
                   >
                     <div>
                       <p className="font-semibold">
-                        Table {order.table.number}
+                        Stol {order.table.number}
                       </p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
                         {order.items.length} items · ${order.total.toFixed(2)}
@@ -297,13 +298,12 @@ const ManagerDashboard = () => {
                     </div>
                     <div className="flex items-center">
                       <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          order.status === "active"
-                            ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
-                            : order.status === "completed"
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${order.status === "active"
+                          ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
+                          : order.status === "completed"
                             ? "bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100"
                             : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
-                        }`}
+                          }`}
                       >
                         {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                       </span>
@@ -317,25 +317,25 @@ const ManagerDashboard = () => {
         <Card className="shadow-md">
           <CardHeader>
             <CardTitle className="flex justify-between items-center">
-              <span>Restaurant Overview</span>
+              <span>Restoran haqida umumiy ma'lumot</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <p className="text-sm text-gray-500 dark:text-gray-400">Menu Items</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Menyu elementlari</p>
                 <p className="text-2xl font-semibold">{menuItems.length}</p>
               </div>
               <div className="space-y-1">
-                <p className="text-sm text-gray-500 dark:text-gray-400">Categories</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Kategoriyalar</p>
                 <p className="text-2xl font-semibold">{categories.length}</p>
               </div>
               <div className="space-y-1">
-                <p className="text-sm text-gray-500 dark:text-gray-400">Tables</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Stollar</p>
                 <p className="text-2xl font-semibold">{tables.length}</p>
               </div>
               <div className="space-y-1">
-                <p className="text-sm text-gray-500 dark:text-gray-400">Today's Revenue</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Bugungi daromad</p>
                 <p className="text-2xl font-semibold">
                   $
                   {orders
@@ -384,21 +384,21 @@ const ChefDashboard = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Kitchen Orders</h2>
+        <h2 className="text-xl font-semibold">Oshxona buyurtmalari</h2>
         <Button
           onClick={() => navigate("/orders")}
           className="restaurant-button-outline"
         >
-          View All Orders
+          Barcha buyurtmalarni ko'rish
         </Button>
       </div>
 
       {activeOrders.length === 0 ? (
         <Card className="bg-gray-50 dark:bg-gray-800 p-8 text-center">
           <ChefHat className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-          <h3 className="text-lg font-medium mb-2">All Caught Up!</h3>
+          <h3 className="text-lg font-medium mb-2">Hammasi ushlandi!</h3>
           <p className="text-gray-500 dark:text-gray-400">
-            There are no pending orders that need your attention.
+            Sizning e'tiboringizni talab qiladigan kutilayotgan buyurtmalar yo'q.
           </p>
         </Card>
       ) : (
@@ -408,7 +408,7 @@ const ChefDashboard = () => {
               <CardHeader className="bg-gray-50 dark:bg-gray-800 py-4">
                 <CardTitle className="flex justify-between items-center text-base">
                   <span>
-                    Table {order.table.number} · Order #{order.id.slice(-4)}
+                    Stol {order.table.number} · Buyurtma #{order.id.slice(-4)}
                   </span>
                   <span className="text-sm text-gray-500 dark:text-gray-400">
                     {new Date(order.createdAt).toLocaleTimeString([], {
@@ -438,7 +438,7 @@ const ChefDashboard = () => {
                             <h4 className="font-medium">{item.menuItem.name}</h4>
                             {item.notes && (
                               <p className="text-sm text-gray-500 dark:text-gray-400">
-                                Note: {item.notes}
+                                Eslatma: {item.notes}
                               </p>
                             )}
                           </div>
@@ -460,8 +460,8 @@ const ChefDashboard = () => {
                             size="sm"
                           >
                             {item.status === "pending"
-                              ? "Start Cooking"
-                              : "Mark Ready"}
+                              ? "Ovqat pishirishni boshlang"
+                              : "Tayyor deb belgilang"}
                           </Button>
                         </div>
                       </div>
@@ -494,12 +494,12 @@ const WaiterDashboard = () => {
     <div className="space-y-8">
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Available Tables</h2>
+          <h2 className="text-xl font-semibold">Mavjud stollar</h2>
           <Button
             onClick={() => navigate("/tables")}
             className="restaurant-button-outline"
           >
-            View All Tables
+            Barcha stollarni ko'rish
           </Button>
         </div>
 
@@ -507,9 +507,9 @@ const WaiterDashboard = () => {
           {freeTables.length === 0 ? (
             <Card className="col-span-full bg-gray-50 dark:bg-gray-800 p-8 text-center">
               <Coffee className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-              <h3 className="text-lg font-medium mb-2">No Tables Available</h3>
+              <h3 className="text-lg font-medium mb-2">Stollar mavjud emas</h3>
               <p className="text-gray-500 dark:text-gray-400">
-                All tables are currently occupied or reserved.
+                Hozircha barcha stollar band yoki oldindan buyurtma qilingan.
               </p>
             </Card>
           ) : (
@@ -525,9 +525,9 @@ const WaiterDashboard = () => {
                       {table.number}
                     </span>
                   </div>
-                  <h3 className="font-medium">Table {table.number}</h3>
+                  <h3 className="font-medium">Stol {table.number}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {table.capacity} Seats
+                    {table.capacity} O'rindiqlar
                   </p>
                 </CardContent>
               </Card>
@@ -538,21 +538,21 @@ const WaiterDashboard = () => {
 
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Orders Ready to Serve</h2>
+          <h2 className="text-xl font-semibold">Buyurtmalar Xizmatga tayyor</h2>
           <Button
             onClick={() => navigate("/orders")}
             className="restaurant-button-outline"
           >
-            View All Orders
+            Barcha buyurtmalarni ko'rish
           </Button>
         </div>
 
         {activeOrders.length === 0 ? (
           <Card className="bg-gray-50 dark:bg-gray-800 p-8 text-center">
             <ClipboardList className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-            <h3 className="text-lg font-medium mb-2">No Orders to Serve</h3>
+            <h3 className="text-lg font-medium mb-2">Xizmat ko'rsatish uchun buyurtmalar yo'q</h3>
             <p className="text-gray-500 dark:text-gray-400">
-              There are no ready items that need to be served.
+              Xizmat qilish kerak bo'lgan tayyor mahsulotlar yo'q.
             </p>
           </Card>
         ) : (
@@ -562,14 +562,14 @@ const WaiterDashboard = () => {
                 <CardHeader className="bg-gray-50 dark:bg-gray-800 py-4">
                   <CardTitle className="flex justify-between items-center text-base">
                     <span>
-                      Table {order.table.number} · Order #{order.id.slice(-4)}
+                      Stol {order.table.number} · Buyurtma #{order.id.slice(-4)}
                     </span>
                     <Button
                       onClick={() => navigate(`/orders`)}
                       className="text-sm restaurant-button"
                       size="sm"
                     >
-                      Serve Items
+                      Elementlarga xizmat ko'rsatish
                     </Button>
                   </CardTitle>
                 </CardHeader>

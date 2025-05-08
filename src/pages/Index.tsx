@@ -57,7 +57,7 @@ const Index = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          Restaurant Management System
+          Restoran boshqaruv tizimi
         </motion.p>
         
         <motion.div
@@ -69,7 +69,7 @@ const Index = () => {
             onClick={() => navigate("/login")} 
             className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-teal-500/20 text-lg py-6 px-8"
           >
-            Get Started
+            Boshlash
           </Button>
         </motion.div>
       </motion.div>

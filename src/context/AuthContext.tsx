@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const { password, email, ...userWithoutPassword } = foundUser;
       setUser(userWithoutPassword);
       localStorage.setItem('restaurant-user', JSON.stringify(userWithoutPassword));
-      toast.success('Welcome back!');
+      toast.success('Qaytib kelganingizdan xursandmiz!');
       
       // Redirect based on role
       navigate('/dashboard');
@@ -105,7 +105,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setUser(null);
     localStorage.removeItem('restaurant-user');
-    toast.info('You have been logged out');
+    toast.info('Siz tizimdan chiqdingiz');
     navigate('/login');
   };
   
