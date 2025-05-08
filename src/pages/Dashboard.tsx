@@ -383,7 +383,7 @@ const ChefDashboard = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
         <h2 className="text-xl font-semibold">Oshxona buyurtmalari</h2>
         <Button
           onClick={() => navigate("/orders")}
@@ -537,15 +537,16 @@ const WaiterDashboard = () => {
       </div>
 
       <div>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
           <h2 className="text-xl font-semibold">Buyurtmalar Xizmatga tayyor</h2>
           <Button
             onClick={() => navigate("/orders")}
-            className="restaurant-button-outline"
+            className="restaurant-button-outline w-full sm:w-auto"
           >
             Barcha buyurtmalarni ko'rish
           </Button>
         </div>
+
 
         {activeOrders.length === 0 ? (
           <Card className="bg-gray-50 dark:bg-gray-800 p-8 text-center">
