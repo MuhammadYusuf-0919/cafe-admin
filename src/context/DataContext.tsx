@@ -6,84 +6,160 @@ import { toast } from 'sonner';
 
 // Mock data
 const MOCK_CATEGORIES: Category[] = [
-  { id: '1', name: 'Appetizers', description: 'Starters and light bites' },
-  { id: '2', name: 'Main Course', description: 'Hearty main dishes' },
-  { id: '3', name: 'Desserts', description: 'Sweet treats' },
-  { id: '4', name: 'Beverages', description: 'Drinks and refreshments' }
+  { id: '1', name: 'Salatlar', description: 'Yengil va foydali salatlar' },
+  { id: '2', name: 'Asosiy taomlar', description: 'Milliy va mazali asosiy taomlar' },
+  { id: '3', name: 'Sho‘rvalar', description: 'Issiq va mazali sho‘rvalar' },
+  { id: '4', name: 'Ichimliklar', description: 'Sovuq va issiq ichimliklar' },
+  { id: '5', name: 'Shirinliklar', description: 'An’anaviy va zamonaviy shirinliklar' },
+  { id: '6', name: 'Non va somsa', description: 'Do‘konda tayyorlangan non mahsulotlari' },
+  { id: '7', name: 'Go‘shtli taomlar', description: 'Kabob, qozon kabob va boshqa go‘shtli taomlar' },
+  { id: '8', name: 'Garnirlar', description: 'Palovga, go‘shtga mos qo‘shimchalar' }
 ];
 
 const MOCK_MENU_ITEMS: MenuItem[] = [
   {
     id: '1',
-    name: 'Garlic Bread',
-    price: 4.99,
-    description: 'Toasted bread with garlic butter',
-    categoryId: '1',
+    name: 'Somsa',
+    price: 3.99,
+    description: 'Qo\'zi go\'shti va piyoz bilan to\'ldirilgan pishirilgan somsa, an\'anaviy o\'zbek ishtahasi',
+    categoryId: '6', // Non va somsa
     available: true,
-    image: 'https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1583087253076-6de06c243071?q=80&w=500&auto=format&fit=crop'
   },
   {
     id: '2',
-    name: 'Bruschetta',
-    price: 6.99,
-    description: 'Toasted bread topped with tomatoes, garlic, and basil',
-    categoryId: '1',
+    name: 'Achichuk Salad',
+    price: 4.50,
+    description: 'Yangi pomidor va piyoz salati, o\'tlar va engil sous bilan',
+    categoryId: '1', // Salatlar
     available: true,
-    image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?q=80&w=500&auto=format&fit=crop'
   },
   {
     id: '3',
-    name: 'Grilled Salmon',
-    price: 18.99,
-    description: 'Salmon fillet with lemon and herbs',
-    categoryId: '2',
+    name: 'Plov (Osh)',
+    price: 12.99,
+    description: 'O\'zbekistonning milliy taomi - guruch, mayin qo\'y go\'shti, sabzi va ziravorlar bilan',
+    categoryId: '2', // Asosiy taomlar
     available: true,
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1583087253076-6de06c243071?q=80&w=500&auto=format&fit=crop'
   },
   {
     id: '4',
-    name: 'Steak',
-    price: 24.99,
-    description: 'Prime cut beef steak with garlic butter',
-    categoryId: '2',
+    name: 'Shashlik',
+    price: 14.99,
+    description: 'Ko\'mirda qovurilgan marinadlangan qo\'y go\'shti shashlik, piyoz bilan',
+    categoryId: '7', // Go'shtli taomlar
     available: true,
-    image: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=500&auto=format&fit=crop'
   },
   {
     id: '5',
-    name: 'Chocolate Cake',
-    price: 7.99,
-    description: 'Rich chocolate layer cake',
-    categoryId: '3',
+    name: 'Manti',
+    price: 10.99,
+    description: 'Maydalangan qo\'y go\'shti va piyoz bilan to\'ldirilgan bug\'da pishirilgan manti, smetana bilan',
+    categoryId: '2', // Asosiy taomlar
     available: true,
-    image: 'https://images.unsplash.com/photo-1605807646983-377bc5a76493?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=500&auto=format&fit=crop'
   },
   {
     id: '6',
-    name: 'Ice Cream Sundae',
-    price: 5.99,
-    description: 'Vanilla ice cream with chocolate sauce and a cherry',
-    categoryId: '3',
+    name: 'Lagman',
+    price: 11.50,
+    description: 'Qo\'lda yasalgan lag\'mon, mol go\'shti va sabzavotlar bilan mazali sho\'rva ichida',
+    categoryId: '3', // Sho'rvalar
     available: true,
-    image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=500&auto=format&fit=crop'
   },
   {
     id: '7',
-    name: 'Coffee',
-    price: 2.99,
-    description: 'Freshly brewed coffee',
-    categoryId: '4',
+    name: 'Chuchvara',
+    price: 9.99,
+    description: 'O\'tlar bilan mazali sho\'rvada xizmat ko\'rsatadigan kichik chuchvara',
+    categoryId: '3', // Sho'rvalar
     available: true,
-    image: 'https://images.unsplash.com/photo-1497636577773-f1231844b336?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3?q=80&w=500&auto=format&fit=crop'
   },
   {
     id: '8',
-    name: 'Fresh Juice',
-    price: 3.99,
-    description: 'Orange, apple, or pineapple juice',
-    categoryId: '4',
+    name: 'Baklava',
+    price: 5.99,
+    description: 'Yong\'oq va asal bilan to\'ldirilgan filo qatlamlaridan tayyorlangan shirinlik',
+    categoryId: '5', // Shirinliklar
     available: true,
-    image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '9',
+    name: 'Halva',
+    price: 4.99,
+    description: 'Kunju tselpa va shakaridan tayyorlangan shirinlik',
+    categoryId: '5', // Shirinliklar
+    available: true,
+    image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '10',
+    name: 'Choy (Green Tea)',
+    price: 2.50,
+    description: 'An\'anaviy o\'zbek yashil choyi sopol piyolada',
+    categoryId: '4', // Ichimliklar
+    available: true,
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '11',
+    name: 'Ayran',
+    price: 3.50,
+    description: 'Yalpiz bilan sovutuvchi yogurt ichimligi, yoz uchun ideal',
+    categoryId: '4', // Ichimliklar
+    available: true,
+    image: 'https://images.unsplash.com/photo-1583087253076-6de06c243071?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '12',
+    name: 'Qazi',
+    price: 16.99,
+    description: 'O\'zbekistonda delikates bo\'lgan an\'anaviy ot go\'shti kolbasasi',
+    categoryId: '7', // Go'shtli taomlar
+    available: false,
+    image: 'https://images.unsplash.com/photo-1493962853295-0fd70327578a?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '13',
+    name: 'Dimlama',
+    price: 13.99,
+    description: 'Sabzavotlar va ziravorlar bilan o\'z sharbatida sekin pishirilgan go\'sht',
+    categoryId: '2',
+    available: true,
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '14',
+    name: 'Mastava',
+    price: 8.50,
+    description: 'Go\'sht va sabzavotli boy guruch sho\'rvasi',
+    categoryId: '3',
+    available: true,
+    image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '15',
+    name: 'Oy Non',
+    price: 2.99,
+    description: 'Tandir pechida pishirilgan an\'anaviy o\'zbek noni',
+    categoryId: '6',
+    available: true,
+    image: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?q=80&w=500&auto=format&fit=crop'
+  },
+  {
+    id: '16',
+    name: 'Shivit Oshi',
+    price: 11.99,
+    description: 'Ukrop bilan rang berilgan yashil noodles, go\'sht va sabzavotlar bilan',
+    categoryId: '2',
+    available: true,
+    image: 'https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=500&auto=format&fit=crop'
   }
 ];
 

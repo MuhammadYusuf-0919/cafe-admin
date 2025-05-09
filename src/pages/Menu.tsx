@@ -102,7 +102,7 @@
 //             className="pl-10"
 //           />
 //         </div>
-        
+
 //         <div className="flex-1">
 //           <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
 //             <TabsList className="w-full h-auto flex-wrap">
@@ -315,7 +315,7 @@ const Menu = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isPreviewDialogOpen, setIsPreviewDialogOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(null);
-  
+
   // New menu item form state
   const [newMenuItem, setNewMenuItem] = useState<Omit<MenuItem, "id">>({
     name: "",
@@ -344,13 +344,13 @@ const Menu = () => {
     setSelectedMenuItem(item);
     setIsEditDialogOpen(true);
   };
-  
+
   // Preview item handler
   const handlePreviewItem = (item: MenuItem) => {
     setSelectedMenuItem(item);
     setIsPreviewDialogOpen(true);
   };
-  
+
   // Handle form input changes
   const handleNewItemChange = (field: keyof Omit<MenuItem, "id">, value: any) => {
     setNewMenuItem(prev => ({
@@ -358,11 +358,11 @@ const Menu = () => {
       [field]: field === "price" ? parseFloat(value) || 0 : value
     }));
   };
-  
+
   // Handle edit form changes
   const handleEditItemChange = (field: keyof MenuItem, value: any) => {
     if (!selectedMenuItem) return;
-    
+
     setSelectedMenuItem(prev => {
       if (!prev) return null;
       return {
@@ -371,14 +371,14 @@ const Menu = () => {
       };
     });
   };
-  
+
   // Handle add menu item
   const handleAddMenuItem = () => {
     if (!newMenuItem.name || !newMenuItem.categoryId || newMenuItem.price <= 0) {
       toast.error("Iltimos, barcha zarur maydonlarni to'ldiring");
       return;
     }
-    
+
     addMenuItem(newMenuItem);
     setIsAddDialogOpen(false);
     setNewMenuItem({
@@ -389,19 +389,19 @@ const Menu = () => {
       available: true,
       image: ""
     });
-    
+
     toast.success("Menyu elementi muvaffaqiyatli qo'shildi");
   };
-  
+
   // Handle save edit
   const handleSaveEdit = () => {
     if (!selectedMenuItem) return;
-    
+
     if (!selectedMenuItem.name || !selectedMenuItem.categoryId || selectedMenuItem.price <= 0) {
       toast.error("Iltimos, barcha zarur maydonlarni to'ldiring");
       return;
     }
-    
+
     updateMenuItem(selectedMenuItem.id, selectedMenuItem);
     setIsEditDialogOpen(false);
     toast.success("Menyu elementi muvaffaqiyatli yangilandi");
@@ -420,8 +420,8 @@ const Menu = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -463,10 +463,10 @@ const Menu = () => {
             placeholder="Taomlarni qidirish..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
+            className="w-full pl-10 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
           />
         </div>
-        
+
         <div className="flex-1">
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
             <TabsList className="w-full h-auto flex-wrap">
@@ -541,22 +541,22 @@ const Menu = () => {
                 onChange={(value) => handleNewItemChange("image", value)}
                 className="mb-4"
               />
-              
+
               <div className="space-y-2">
                 <Label htmlFor="name">Taom nomi *</Label>
-                <Input 
-                  id="name" 
+                <Input
+                  id="name"
                   value={newMenuItem.name}
                   onChange={(e) => handleNewItemChange("name", e.target.value)}
                   placeholder="Masalan: Palov"
                   className="border-gray-300 dark:border-gray-600"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="price">Narxi *</Label>
-                <Input 
-                  id="price" 
+                <Input
+                  id="price"
                   type="number"
                   step="0.01"
                   value={newMenuItem.price || ""}
@@ -565,11 +565,11 @@ const Menu = () => {
                   className="border-gray-300 dark:border-gray-600"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="category">Kategoriya *</Label>
-                <Select 
-                  value={newMenuItem.categoryId} 
+                <Select
+                  value={newMenuItem.categoryId}
                   onValueChange={(value) => handleNewItemChange("categoryId", value)}
                 >
                   <SelectTrigger className="border-gray-300 dark:border-gray-600">
@@ -584,11 +584,11 @@ const Menu = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="description">Tavsif</Label>
-                <Textarea 
-                  id="description" 
+                <Textarea
+                  id="description"
                   value={newMenuItem.description || ""}
                   onChange={(e) => handleNewItemChange("description", e.target.value)}
                   placeholder="Taom haqida qisqacha ma'lumot"
@@ -596,10 +596,10 @@ const Menu = () => {
                   className="border-gray-300 dark:border-gray-600"
                 />
               </div>
-              
+
               <div className="flex items-center space-x-2">
-                <Switch 
-                  id="available" 
+                <Switch
+                  id="available"
                   checked={newMenuItem.available}
                   onCheckedChange={(checked) => handleNewItemChange("available", checked)}
                 />
@@ -631,21 +631,21 @@ const Menu = () => {
                     onChange={(value) => handleEditItemChange("image", value)}
                     className="mb-4"
                   />
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="edit-name">Taom nomi *</Label>
-                    <Input 
-                      id="edit-name" 
+                    <Input
+                      id="edit-name"
                       value={selectedMenuItem.name}
                       onChange={(e) => handleEditItemChange("name", e.target.value)}
                       className="border-gray-300 dark:border-gray-600"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="edit-price">Narxi *</Label>
-                    <Input 
-                      id="edit-price" 
+                    <Input
+                      id="edit-price"
                       type="number"
                       step="0.01"
                       value={selectedMenuItem.price || ""}
@@ -653,11 +653,11 @@ const Menu = () => {
                       className="border-gray-300 dark:border-gray-600"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="edit-category">Kategoriya *</Label>
-                    <Select 
-                      value={selectedMenuItem.categoryId} 
+                    <Select
+                      value={selectedMenuItem.categoryId}
                       onValueChange={(value) => handleEditItemChange("categoryId", value)}
                     >
                       <SelectTrigger className="border-gray-300 dark:border-gray-600">
@@ -672,21 +672,21 @@ const Menu = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="edit-description">Tavsif</Label>
-                    <Textarea 
-                      id="edit-description" 
+                    <Textarea
+                      id="edit-description"
                       value={selectedMenuItem.description || ""}
                       onChange={(e) => handleEditItemChange("description", e.target.value)}
                       rows={3}
                       className="border-gray-300 dark:border-gray-600"
                     />
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
-                    <Switch 
-                      id="edit-available" 
+                    <Switch
+                      id="edit-available"
                       checked={selectedMenuItem.available}
                       onCheckedChange={(checked) => handleEditItemChange("available", checked)}
                     />
@@ -702,7 +702,7 @@ const Menu = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      
+
       {/* Preview Menu Item Dialog */}
       <Dialog open={isPreviewDialogOpen} onOpenChange={setIsPreviewDialogOpen}>
         <DialogContent className="sm:max-w-lg overflow-hidden">
@@ -725,28 +725,27 @@ const Menu = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="mb-6">
                   <h3 className="text-2xl font-semibold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">{selectedMenuItem.name}</h3>
                   <div className="flex justify-between items-center mt-2">
                     <span className="text-lg font-bold">${selectedMenuItem.price.toFixed(2)}</span>
-                    <span className={`px-2 py-1 rounded-full text-xs ${
-                      selectedMenuItem.available 
-                        ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400" 
+                    <span className={`px-2 py-1 rounded-full text-xs ${selectedMenuItem.available
+                        ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
                         : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
-                    }`}>
+                      }`}>
                       {selectedMenuItem.available ? "Mavjud" : "Mavjud emas"}
                     </span>
                   </div>
                 </div>
-                
+
                 {selectedMenuItem.description && (
                   <div className="mb-4">
                     <h4 className="text-sm font-medium text-gray-500 mb-1">Tavsif</h4>
                     <p className="text-gray-700 dark:text-gray-300">{selectedMenuItem.description}</p>
                   </div>
                 )}
-                
+
                 <div>
                   <h4 className="text-sm font-medium text-gray-500 mb-1">Kategoriya</h4>
                   <p className="text-gray-700 dark:text-gray-300">
@@ -759,8 +758,8 @@ const Menu = () => {
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsPreviewDialogOpen(false)}>Yopish</Button>
             {user?.role === "manager" && (
-              <Button 
-                variant="teal" 
+              <Button
+                variant="teal"
                 onClick={() => {
                   setIsPreviewDialogOpen(false);
                   if (selectedMenuItem) handleEditItem(selectedMenuItem);
@@ -799,7 +798,7 @@ const MenuItemCard = ({
 
   return (
     <Card className="overflow-hidden h-full flex flex-col shadow-md hover:shadow-lg transition-shadow duration-200">
-      <div 
+      <div
         className="relative h-48 overflow-hidden cursor-pointer"
         onClick={onPreview}
       >
@@ -849,7 +848,7 @@ const MenuItemCard = ({
       </div>
       <CardContent className="p-4 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-2">
-          <h3 
+          <h3
             className="font-semibold text-lg text-gray-800 dark:text-gray-100 cursor-pointer hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
             onClick={onPreview}
           >
@@ -872,11 +871,10 @@ const MenuItemCard = ({
             />
           </div>
           <div
-            className={`px-2 py-1 rounded-full text-xs ${
-              item.available
+            className={`px-2 py-1 rounded-full text-xs ${item.available
                 ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
                 : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
-            }`}
+              }`}
           >
             {item.available ? "Sotuvda" : "Mavjud emas"}
           </div>

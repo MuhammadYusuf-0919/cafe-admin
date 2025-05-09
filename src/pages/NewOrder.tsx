@@ -9,13 +9,14 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useMediaQuery } from "@/hooks/use-mobile";
-import { 
-  ArrowLeft, 
-  ShoppingCart, 
-  Plus, 
-  Minus, 
-  Trash2, 
-  ChevronRight 
+import {
+  ArrowLeft,
+  ShoppingCart,
+  Plus,
+  Minus,
+  Trash2,
+  ChevronRight,
+  Search
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -23,28 +24,28 @@ import { Category, MenuItem } from "@/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const NewOrder = () => {
-  const { 
-    categories, 
-    menuItems, 
-    activeTable, 
-    cart, 
-    addToCart, 
-    updateCartItem, 
-    removeFromCart, 
-    clearCart, 
+  const {
+    categories,
+    menuItems,
+    activeTable,
+    cart,
+    addToCart,
+    updateCartItem,
+    removeFromCart,
+    clearCart,
     submitOrder,
-    loading 
+    loading
   } = useData();
   const navigate = useNavigate();
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("menu");
 
   useEffect(() => {
     if (!loading && !activeTable) {
-      toast.error("Please select a table first");
-      // navigate("/tables");
+      toast.error("Iltimos, avval stolni tanlang");
+      navigate("/tables");
     } else {
       console.log(activeTable)
     }
@@ -57,11 +58,12 @@ const NewOrder = () => {
     }
   }, [categories, selectedCategory]);
 
+  // Filtered menu items based on search and category
   const filteredItems = menuItems.filter(
     (item) =>
-      (selectedCategory === "" || item.categoryId === selectedCategory) &&
-      (searchQuery === "" ||
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+      (selectedCategory === "all" || item.categoryId === selectedCategory) &&
+      (item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.description?.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const getItemsInCart = (menuItemId: string) => {
@@ -78,7 +80,7 @@ const NewOrder = () => {
 
   const handleAddToCart = (menuItem: MenuItem) => {
     addToCart(menuItem, 1);
-    toast.success(`Added ${menuItem.name} to order`);
+    toast.success(`Buyurtma uchun ${menuItem.name} qo‘shildi`);
   };
 
   const handleRemoveFromCart = (menuItemId: string) => {
@@ -101,12 +103,12 @@ const NewOrder = () => {
 
   const handleSubmitOrder = () => {
     if (cart.length === 0) {
-      toast.error("Your cart is empty");
+      toast.error("Savatingiz boʻsh");
       return;
     }
-    
+
     submitOrder();
-    toast.success("Order placed successfully!");
+    toast.success("Buyurtma muvaffaqiyatli topshirildi!");
     navigate("/tables");
   };
 
@@ -123,8 +125,8 @@ const NewOrder = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -160,33 +162,42 @@ const NewOrder = () => {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="menu" className="flex-1 flex flex-col overflow-hidden">
+            <TabsContent value="menu" className="flex-1 flex flex-col overflow-hidden p-2">
               <div className="mb-4">
-                <Input
-                  placeholder="Search menu items..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full"
-                />
-              </div>
-
-              <div className="scrollbar-thin overflow-x-auto pb-2">
-                <div className="flex gap-2 min-w-max">
-                  {categories.map((category) => (
-                    <Button
-                      key={category.id}
-                      variant={selectedCategory === category.id ? "teal" : "outline"}
-                      className="whitespace-nowrap"
-                      onClick={() => setSelectedCategory(category.id)}
-                    >
-                      {category.name}
-                    </Button>
-                  ))}
+                <div className="relative w-full">
+                  <Input
+                    placeholder="Menyu bandlarini qidirish..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-10 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                  />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
                 </div>
               </div>
 
-              <ScrollArea className="flex-1 overflow-y-auto pr-2 mt-4">
-                <motion.div 
+              <ScrollArea className="scrollbar-thin overflow-x-auto mb-2">
+                <div className="flex-1">
+                  <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
+                    <TabsList className="w-full h-auto flex-wrap">
+                      <TabsTrigger value="all" className="flex-grow">
+                        Barcha taomlar
+                      </TabsTrigger>
+                      {categories.map((category) => (
+                        <TabsTrigger
+                          key={category.id}
+                          value={category.id}
+                          className="flex-grow"
+                        >
+                          {category.name}
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                  </Tabs>
+                </div>
+              </ScrollArea>
+
+              <ScrollArea className="flex-1 pr-2 mt-2 overflow-y-auto h-full">
+                <motion.div
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-4"
                   variants={containerVariants}
                   initial="hidden"
@@ -237,7 +248,7 @@ const NewOrder = () => {
                                 </Button>
                               </div>
                             ) : (
-                              <Button 
+                              <Button
                                 onClick={() => handleAddToCart(item)}
                                 className="w-full"
                                 variant="teal"
@@ -264,7 +275,7 @@ const NewOrder = () => {
             </TabsContent>
 
             <TabsContent value="cart" className="md:hidden flex-1 flex flex-col">
-              <CartPanel 
+              <CartPanel
                 cart={cart}
                 onUpdateQuantity={(index, quantity) => updateCartItem(index, quantity)}
                 onRemoveItem={handleDeleteFromCart}
@@ -286,7 +297,7 @@ const NewOrder = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto pr-2">
-              <CartPanel 
+              <CartPanel
                 cart={cart}
                 onUpdateQuantity={(index, quantity) => updateCartItem(index, quantity)}
                 onRemoveItem={handleDeleteFromCart}

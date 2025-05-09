@@ -52,7 +52,7 @@ const Categories = () => {
   // Handle add category
   const handleAddCategory = () => {
     if (categoryName.trim() === "") {
-      toast.error("Category name cannot be empty");
+      toast.error("Kategoriya nomi boʻsh boʻlishi mumkin emas");
       return;
     }
     
@@ -64,7 +64,7 @@ const Categories = () => {
     setCategoryName("");
     setCategoryDescription("");
     setIsAddDialogOpen(false);
-    toast.success("Category added successfully");
+    toast.success("Kategoriya muvaffaqiyatli qo‘shildi");
   };
 
   // Handle update category
@@ -72,7 +72,7 @@ const Categories = () => {
     if (!selectedCategory) return;
     
     if (categoryName.trim() === "") {
-      toast.error("Category name cannot be empty");
+      toast.error("Kategoriya nomi boʻsh boʻlishi mumkin emas");
       return;
     }
     
@@ -86,7 +86,7 @@ const Categories = () => {
     setCategoryDescription("");
     setSelectedCategory(null);
     setIsEditDialogOpen(false);
-    toast.success("Category updated successfully");
+    toast.success("Kategoriya muvaffaqiyatli yangilandi");
   };
 
   // Handle delete category
@@ -96,7 +96,7 @@ const Categories = () => {
     deleteCategory(selectedCategory.id);
     setSelectedCategory(null);
     setIsDeleteDialogOpen(false);
-    toast.success("Category deleted successfully");
+    toast.success("Kategoriya muvaffaqiyatli oʻchirildi");
   };
 
   // Animation variants

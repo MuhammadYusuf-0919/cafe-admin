@@ -16,7 +16,7 @@ const Profile = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      toast.success("Profile updated successfully");
+      toast.success("Profil muvaffaqiyatli yangilandi");
     }, 1000);
   };
 

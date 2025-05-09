@@ -19,7 +19,15 @@ export function useMediaQuery(query: string) {
   return !!matches
 }
 
-// Add a compatibility function that acts as an alias to useMediaQuery for mobile devices
+// Add specific media query hooks for different device sizes
 export function useIsMobile() {
-  return useMediaQuery("(max-width: 768px)")
+  return useMediaQuery("(max-width: 640px)")
+}
+
+export function useIsTablet() {
+  return useMediaQuery("(min-width: 641px) and (max-width: 1024px)")
+}
+
+export function useIsMobileOrTablet() {
+  return useMediaQuery("(max-width: 1024px)")
 }

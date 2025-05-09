@@ -59,14 +59,14 @@ const TablesManagement = () => {
   // Handle add table
   const handleAddTable = () => {
     if (tableNumber <= 0) {
-      toast.error("Table number must be greater than 0");
+      toast.error("Stol raqami 0 dan katta bo'lishi kerak");
       return;
     }
     
     // Check if table number already exists
     const tableExists = tables.some(table => table.number === tableNumber);
     if (tableExists) {
-      toast.error(`Table ${tableNumber} already exists`);
+      toast.error(`${tableNumber}-stol allaqachon mavjud`);
       return;
     }
     
@@ -80,7 +80,7 @@ const TablesManagement = () => {
     setTableCapacity(2);
     setTableStatus("free");
     setIsAddDialogOpen(false);
-    toast.success(`Table ${tableNumber} added successfully`);
+    toast.success(`${tableNumber}-stol muvaffaqiyatli qo‘shildi`);
   };
 
   // Handle update table
@@ -88,7 +88,7 @@ const TablesManagement = () => {
     if (!selectedTable) return;
     
     if (tableNumber <= 0) {
-      toast.error("Table number must be greater than 0");
+      toast.error("Stol raqami 0 dan katta bo'lishi kerak");
       return;
     }
     
@@ -98,7 +98,7 @@ const TablesManagement = () => {
     );
     
     if (tableExists) {
-      toast.error(`Table ${tableNumber} already exists`);
+      toast.error(`${tableNumber}-stol allaqachon mavjud`);
       return;
     }
     
@@ -111,7 +111,7 @@ const TablesManagement = () => {
     
     setSelectedTable(null);
     setIsEditDialogOpen(false);
-    toast.success(`Table ${tableNumber} updated successfully`);
+    toast.success(`${tableNumber}-stol muvaffaqiyatli yangilandi`);
   };
 
   // Handle delete table
@@ -121,7 +121,7 @@ const TablesManagement = () => {
     deleteTable(selectedTable.id);
     setSelectedTable(null);
     setIsDeleteDialogOpen(false);
-    toast.success(`Table ${selectedTable.number} deleted successfully`);
+    toast.success(`${selectedTable.number}-stol muvaffaqiyatli o‘chirildi`);
   };
 
   // Animation variants

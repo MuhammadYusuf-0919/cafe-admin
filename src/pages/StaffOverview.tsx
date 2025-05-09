@@ -140,7 +140,7 @@ const StaffOverview = () => {
   // Add staff member
   const handleAddStaff = () => {
     if (!name || !email || !role || !phone) {
-      toast.error("Please fill all required fields");
+      toast.error("Barcha kerakli maydonlarni toʻldiring");
       return;
     }
     
@@ -158,7 +158,7 @@ const StaffOverview = () => {
     setStaffMembers([...staffMembers, newStaff]);
     resetForm();
     setIsAddDialogOpen(false);
-    toast.success("Staff member added successfully");
+    toast.success("Xodim muvaffaqiyatli qo‘shildi");
   };
 
   // Edit staff member
@@ -166,7 +166,7 @@ const StaffOverview = () => {
     if (!selectedStaff) return;
     
     if (!name || !email || !role || !phone) {
-      toast.error("Please fill all required fields");
+      toast.error("Barcha kerakli maydonlarni toʻldiring");
       return;
     }
     
@@ -189,7 +189,7 @@ const StaffOverview = () => {
     setStaffMembers(updatedStaff);
     resetForm();
     setIsEditDialogOpen(false);
-    toast.success("Staff member updated successfully");
+    toast.success("Xodim muvaffaqiyatli yangilandi");
   };
 
   // Delete staff member
@@ -203,7 +203,7 @@ const StaffOverview = () => {
     setStaffMembers(updatedStaff);
     setSelectedStaff(null);
     setIsDeleteDialogOpen(false);
-    toast.success("Staff member deleted successfully");
+    toast.success("Xodim muvaffaqiyatli oʻchirildi");
   };
 
   // Reset form

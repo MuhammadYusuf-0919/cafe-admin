@@ -28,7 +28,7 @@ const Settings = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      toast.success("Settings saved successfully");
+      toast.success("Sozlamalar muvaffaqiyatli saqlandi");
     }, 1000);
   };
 
