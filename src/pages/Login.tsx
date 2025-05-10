@@ -60,7 +60,7 @@ const Login = () => {
       await login(values.email, values.password);
       // Navigate is handled in the auth context
     } catch (err) {
-      setError("Invalid email or password");
+      setError("Yaroqsiz elektron pochta yoki parol");
     }
   };
 
@@ -71,7 +71,7 @@ const Login = () => {
     try {
       await login(email, password);
     } catch (err) {
-      setError("Failed to login with demo account");
+      setError("Demo hisob qaydnomasi bilan tizimga kirib bo‘lmadi");
     }
   };
 
@@ -117,7 +117,7 @@ const Login = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="your.email@example.com" {...field} className="border-0 shadow-md focus:ring-2 focus:ring-teal-500" />
+                        <Input placeholder="your.email@example.com" {...field} className="border- shadow-md focus:ring-2 focus:ring-teal-500" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -131,7 +131,7 @@ const Login = () => {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="******" {...field} className="border-0 shadow-md focus:ring-2 focus:ring-teal-500" />
+                        <Input type="password" placeholder="******" {...field} className="border- shadow-md focus:ring-2 focus:ring-teal-500" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -164,7 +164,7 @@ const Login = () => {
                   key={account.email}
                   variant="outline"
                   size="sm"
-                  className="text-xs border-0 shadow-md hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-teal-900/20 dark:hover:text-teal-300"
+                  className="text-xs border- shadow-md hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-teal-900/20 dark:hover:text-teal-300"
                   onClick={() => loginWithDemo(account.email, account.password)}
                   disabled={isLoading}
                 >

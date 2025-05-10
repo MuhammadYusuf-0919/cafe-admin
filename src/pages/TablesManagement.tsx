@@ -208,7 +208,7 @@ const TablesManagement = () => {
             placeholder="Search tables..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+            className="pl-10 border- shadow-md focus:ring-2 focus:ring-teal-500"
           />
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
         </div>
@@ -264,7 +264,7 @@ const TablesManagement = () => {
                 min={1}
                 value={tableNumber}
                 onChange={(e) => setTableNumber(parseInt(e.target.value) || 0)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -276,13 +276,13 @@ const TablesManagement = () => {
                 max={20}
                 value={tableCapacity}
                 onChange={(e) => setTableCapacity(parseInt(e.target.value) || 2)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
               <Label htmlFor="tableStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</Label>
               <Select value={tableStatus} onValueChange={setTableStatus}>
-                <SelectTrigger id="tableStatus" className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500">
+                <SelectTrigger id="tableStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -295,7 +295,7 @@ const TablesManagement = () => {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button onClick={handleAddTable}
@@ -308,7 +308,7 @@ const TablesManagement = () => {
 
       {/* Edit Table Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border-0 rounded-xl">
+        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border- rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">Edit Table</DialogTitle>
           </DialogHeader>
@@ -321,7 +321,7 @@ const TablesManagement = () => {
                 min={1}
                 value={tableNumber}
                 onChange={(e) => setTableNumber(parseInt(e.target.value) || 0)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -333,13 +333,13 @@ const TablesManagement = () => {
                 max={20}
                 value={tableCapacity}
                 onChange={(e) => setTableCapacity(parseInt(e.target.value) || 2)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
               <Label htmlFor="editTableStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</Label>
               <Select value={tableStatus} onValueChange={setTableStatus}>
-                <SelectTrigger id="editTableStatus" className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500">
+                <SelectTrigger id="editTableStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -350,9 +350,9 @@ const TablesManagement = () => {
               </Select>
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button onClick={handleUpdateTable}
@@ -374,9 +374,9 @@ const TablesManagement = () => {
               Are you sure you want to delete Table #{selectedTable?.number}? This action cannot be undone.
             </p>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button variant="destructive" onClick={handleConfirmDelete}

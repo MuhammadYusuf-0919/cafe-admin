@@ -45,7 +45,7 @@ const NewOrder = () => {
   useEffect(() => {
     if (!loading && !activeTable) {
       toast.error("Iltimos, avval stolni tanlang");
-      navigate("/tables");
+      // navigate("/tables");
     } else {
       console.log(activeTable)
     }
@@ -137,9 +137,9 @@ const NewOrder = () => {
 
   return (
     <AppLayout title={`New Order - Table ${activeTable?.number || ""}`}>
-      <div className="flex gap-4 h-[calc(100vh-7rem)] overflow-hidden flex-col md:flex-row">
+      <div className="flex gap-4 h[calc(100vh-7rem)] overflow- flex-col md:flex-row relative">
         {/* Left panel - Menu */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-">
           <div className="flex justify-between items-center mb-4">
             <Button
               variant="outline"
@@ -162,20 +162,20 @@ const NewOrder = () => {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="menu" className="flex-1 flex flex-col overflow-hidden p-2">
+            <TabsContent value="menu" className="flex-1 flex flex-col overflow- p-2">
               <div className="mb-4">
                 <div className="relative w-full">
                   <Input
                     placeholder="Menyu bandlarini qidirish..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                    className="w-full pl-10 border- shadow-md focus:ring-2 focus:ring-teal-500"
                   />
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
                 </div>
               </div>
 
-              <ScrollArea className="scrollbar-thin overflow-x-auto mb-2">
+              <div className="scrollbar-thin overflow-x- mb-2">
                 <div className="flex-1">
                   <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
                     <TabsList className="w-full h-auto flex-wrap">
@@ -194,9 +194,9 @@ const NewOrder = () => {
                     </TabsList>
                   </Tabs>
                 </div>
-              </ScrollArea>
+              </div>
 
-              <ScrollArea className="flex-1 pr-2 mt-2 overflow-y-auto h-full">
+              <div className="flex-1 pr-2 mt-2 overflow-y- h-[60%]">
                 <motion.div
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-4"
                   variants={containerVariants}
@@ -271,7 +271,7 @@ const NewOrder = () => {
                     </div>
                   )}
                 </motion.div>
-              </ScrollArea>
+              </div>
             </TabsContent>
 
             <TabsContent value="cart" className="md:hidden flex-1 flex flex-col">
@@ -288,7 +288,7 @@ const NewOrder = () => {
         </div>
 
         {/* Right panel - Cart (visible on larger screens) */}
-        <div className="hidden md:flex w-96 flex-col overflow-hidden">
+        <div className="hidden md:flex w-96 h-[calc(100vh-7rem)] flex-col overflow-hidde sticky top-0 right-0 left-0">
           <Card className="h-full flex flex-col">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center">
@@ -296,7 +296,7 @@ const NewOrder = () => {
                 Your Order
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 overflow-y-auto pr-2">
+            <CardContent className="flex-1 overflow-y- pr-2">
               <CartPanel
                 cart={cart}
                 onUpdateQuantity={(index, quantity) => updateCartItem(index, quantity)}
@@ -331,7 +331,7 @@ const CartPanel = ({
   calculateTotal,
 }: CartPanelProps) => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full relative">
       {cart.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
           <ShoppingCart className="h-16 w-16 text-gray-300 dark:text-gray-700 mb-4" />
@@ -341,8 +341,8 @@ const CartPanel = ({
           </p>
         </div>
       ) : (
-        <ScrollArea className="flex-1">
-          <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 h-full relative">
+          <ScrollArea className="flex-1 overflow-y-auto md:h-[370px] h-[300px] pr-4">
             <AnimatePresence>
               {cart.map((item, index) => (
                 <motion.div
@@ -353,7 +353,7 @@ const CartPanel = ({
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   className="mb-4"
                 >
-                  <Card className="overflow-hidden">
+                  <Card className="overflow-hidden border">
                     <CardContent className="p-4">
                       <div className="flex justify-between">
                         <div className="flex-1">
@@ -415,9 +415,9 @@ const CartPanel = ({
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
+          </ScrollArea>
 
-          <div className="shadow-inner bg-gray-50 dark:bg-gray-900 mt-auto pt-4 space-y-4 p-4 rounded-b-lg">
+          <div className="shadow-inner bg-gray-50 dark:bg-gray-900 mt-auto pt-4 space-y-4 p-4 rounded-b-lg sticky top-0 right- left-0">
             <div className="flex justify-between">
               <Button
                 variant="outline"
@@ -446,7 +446,7 @@ const CartPanel = ({
               Place Order <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
-        </ScrollArea>
+        </div>
       )}
     </div>
   );

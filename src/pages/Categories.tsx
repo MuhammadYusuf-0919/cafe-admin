@@ -157,7 +157,7 @@ const Categories = () => {
             placeholder="Search categories..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+            className="pl-10 border- shadow-md focus:ring-2 focus:ring-teal-500"
           />
           <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
         </div>
@@ -210,7 +210,7 @@ const Categories = () => {
                 id="categoryName"
                 value={categoryName}
                 onChange={(e) => setCategoryName(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
                 placeholder="Enter category name"
               />
             </div>
@@ -220,14 +220,14 @@ const Categories = () => {
                 id="categoryDescription"
                 value={categoryDescription}
                 onChange={(e) => setCategoryDescription(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
                 placeholder="Enter category description"
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button onClick={handleAddCategory}
@@ -251,7 +251,7 @@ const Categories = () => {
                 id="editCategoryName"
                 value={categoryName}
                 onChange={(e) => setCategoryName(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
                 placeholder="Enter category name"
               />
             </div>
@@ -261,14 +261,14 @@ const Categories = () => {
                 id="editCategoryDescription"
                 value={categoryDescription}
                 onChange={(e) => setCategoryDescription(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
                 placeholder="Enter category description"
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button onClick={handleUpdateCategory}
@@ -290,9 +290,9 @@ const Categories = () => {
               Are you sure you want to delete the category "{selectedCategory?.name}"? This action cannot be undone.
             </p>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button variant="destructive" onClick={handleConfirmDelete}

@@ -463,7 +463,7 @@ const Menu = () => {
             placeholder="Taomlarni qidirish..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+            className="w-full pl-10 border- shadow-md focus:ring-2 focus:ring-teal-500"
           />
         </div>
 

@@ -329,7 +329,7 @@ const StaffOverview = () => {
             placeholder="Search staff..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+            className="pl-10 border- shadow-md focus:ring-2 focus:ring-teal-500"
           />
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
         </div>
@@ -439,13 +439,13 @@ const StaffOverview = () => {
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
               <Label htmlFor="role" className="text-sm font-medium text-gray-700 dark:text-gray-300">Role</Label>
               <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
-                <SelectTrigger id="role" className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500">
+                <SelectTrigger id="role" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
                   <SelectValue placeholder="Select role" />
                 </SelectTrigger>
                 <SelectContent>
@@ -464,7 +464,7 @@ const StaffOverview = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -473,7 +473,7 @@ const StaffOverview = () => {
                 id="phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -483,7 +483,7 @@ const StaffOverview = () => {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -493,13 +493,13 @@ const StaffOverview = () => {
                 value={schedule}
                 onChange={(e) => setSchedule(e.target.value)}
                 placeholder="e.g. Mon-Fri, 9am-5pm"
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button onClick={handleAddStaff}
@@ -523,13 +523,13 @@ const StaffOverview = () => {
                 id="editName"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
               <Label htmlFor="editRole" className="text-sm font-medium text-gray-700 dark:text-gray-300">Role</Label>
               <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
-                <SelectTrigger id="editRole" className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500">
+                <SelectTrigger id="editRole" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
                   <SelectValue placeholder="Select role" />
                 </SelectTrigger>
                 <SelectContent>
@@ -548,7 +548,7 @@ const StaffOverview = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -557,7 +557,7 @@ const StaffOverview = () => {
                 id="editPhone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -567,7 +567,7 @@ const StaffOverview = () => {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
@@ -577,13 +577,13 @@ const StaffOverview = () => {
                 value={schedule}
                 onChange={(e) => setSchedule(e.target.value)}
                 placeholder="e.g. Mon-Fri, 9am-5pm"
-                className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500"
+                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
               <Label htmlFor="editStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</Label>
               <Select value={status} onValueChange={(value) => setStatus(value as "active" | "on-leave" | "inactive")}>
-                <SelectTrigger id="editStatus" className="mt-2 border-0 shadow-md focus:ring-2 focus:ring-teal-500">
+                <SelectTrigger id="editStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -594,9 +594,9 @@ const StaffOverview = () => {
               </Select>
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button onClick={handleEditStaff}
@@ -618,9 +618,9 @@ const StaffOverview = () => {
               Are you sure you want to delete {selectedStaff?.name}? This action cannot be undone.
             </p>
           </div>
-          <DialogFooter>
+          <DialogFooter className="grid gap-4">
             <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}
-              className="border-0 shadow-md hover:shadow-lg">
+              className="border- shadow-md hover:shadow-lg">
               Cancel
             </Button>
             <Button variant="destructive" onClick={handleDeleteStaff}
