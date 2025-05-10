@@ -148,7 +148,7 @@ const Reports = () => {
           <Card className="h-full">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle>Sales Overview</CardTitle>
+                <CardTitle>Sotish haqida umumiy ma'lumot</CardTitle>
                 <div className="flex space-x-2">
                   <Button
                     variant={reportPeriod === "daily" ? "teal" : "outline"}
@@ -195,7 +195,7 @@ const Reports = () => {
                   <Legend />
                   <Bar
                     dataKey="total"
-                    name="Sales ($)"
+                    name="Sotish ($)"
                     fill="#0FB5BA"
                     radius={[4, 4, 0, 0]}
                     animationDuration={1500}
