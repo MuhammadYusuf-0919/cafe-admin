@@ -424,26 +424,26 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       id: Date.now().toString()
     };
     setCategories(prev => [...prev, newCategory]);
-    toast.success(`Category "${category.name}" added successfully`);
+    toast.success(`"${category.name}" toifasi muvaffaqiyatli qo'shildi`);
   };
   
   const updateCategory = (id: string, data: Partial<Category>) => {
     setCategories(prev => 
       prev.map(cat => (cat.id === id ? { ...cat, ...data } : cat))
     );
-    toast.success('Category updated successfully');
+    toast.success('Kategoriya muvaffaqiyatli yangilandi');
   };
   
   const deleteCategory = (id: string) => {
     // Check if any menu items use this category
     const hasMenuItems = menuItems.some(item => item.categoryId === id);
     if (hasMenuItems) {
-      toast.error('Cannot delete category that has menu items');
+      toast.error(`Menyu bandlari bo'lgan turkumni o'chirib bo'lmaydi`);
       return;
     }
     
     setCategories(prev => prev.filter(cat => cat.id !== id));
-    toast.success('Category deleted successfully');
+    toast.success(`Kategoriya muvaffaqiyatli o'chirildi`);
   };
   
   // Menu Item CRUD operations
@@ -453,14 +453,14 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       id: Date.now().toString()
     };
     setMenuItems(prev => [...prev, newItem]);
-    toast.success(`Menu item "${item.name}" added successfully`);
+    toast.success(`Menyu elementi "${item.name}" muvaffaqiyatli qo'shildi`);
   };
   
   const updateMenuItem = (id: string, data: Partial<MenuItem>) => {
     setMenuItems(prev => 
       prev.map(item => (item.id === id ? { ...item, ...data } : item))
     );
-    toast.success('Menu item updated successfully');
+    toast.success('Menyu elementi muvaffaqiyatli yangilandi');
   };
   
   const deleteMenuItem = (id: string) => {
@@ -470,12 +470,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
     
     if (hasOrders) {
-      toast.error('Cannot delete menu item that has orders');
+      toast.error(`Buyurtmalari bo'lgan menyu bandini o'chirib bo'lmaydi`);
       return;
     }
     
     setMenuItems(prev => prev.filter(item => item.id !== id));
-    toast.success('Menu item deleted successfully');
+    toast.success(`Menyu elementi muvaffaqiyatli o'chirildi`);
   };
   
   // Table CRUD operations
@@ -485,26 +485,26 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       id: Date.now().toString()
     };
     setTables(prev => [...prev, newTable]);
-    toast.success(`Table #${table.number} added successfully`);
+    toast.success(`Stol #${table.number} muvaffaqiyatli qoʻshildi`);
   };
   
   const updateTable = (id: string, data: Partial<Table>) => {
     setTables(prev => 
       prev.map(table => (table.id === id ? { ...table, ...data } : table))
     );
-    toast.success('Table updated successfully');
+    toast.success('Stol muvaffaqiyatli yangilandi');
   };
   
   const deleteTable = (id: string) => {
     // Check if any orders use this table
     const hasOrders = orders.some(order => order.tableId === id);
     if (hasOrders) {
-      toast.error('Cannot delete table that has orders');
+      toast.error('Buyurtmalari bor jadvalni oʻchirib boʻlmaydi');
       return;
     }
     
     setTables(prev => prev.filter(table => table.id !== id));
-    toast.success('Table deleted successfully');
+    toast.success('Jadval muvaffaqiyatli oʻchirildi');
   };
   
   // Cart and Order Management
@@ -522,7 +522,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setCart([...cart, { menuItem, quantity, notes }]);
     }
     
-    toast.success(`Added ${quantity}x ${menuItem.name} to cart`);
+    toast.success(`Savatga ${quantity}x ${menuItem.name} qoʻshildi`);
   };
   
   const updateCartItem = (index: number, quantity: number, notes?: string) => {
@@ -548,7 +548,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       updatedCart.splice(index, 1);
       return updatedCart;
     });
-    toast.info('Item removed from cart');
+    toast.info('Buyum savatdan olib tashlandi');
   };
   
   const clearCart = () => {
@@ -558,7 +558,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   
   const submitOrder = () => {
     if (!activeTable) {
-      toast.error('Please select a table first');
+      toast.error('Iltimos, avval jadvalni tanlang');
       return;
     }
     
@@ -568,7 +568,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     
     if (!user || user.role !== 'waiter') {
-      toast.error('Only waiters can submit orders');
+      toast.error('Faqat ofitsiantlar buyurtma berishlari mumkin');
       return;
     }
     
@@ -610,7 +610,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Clear cart and active table
     clearCart();
     
-    toast.success('Order submitted successfully');
+    toast.success('Buyurtma muvaffaqiyatli topshirildi');
   };
   
   // Chef Operations
@@ -631,7 +631,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       })
     );
     
-    toast.success(`Item status updated to ${status}`);
+    toast.success(`Element holati ${status} ga yangilandi`);
   };
   
   // Manager Operations
@@ -651,7 +651,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       })
     );
     
-    toast.success('Order completed successfully');
+    toast.success('Buyurtma muvaffaqiyatli yakunlandi');
   };
   
   const cancelOrder = (orderId: string) => {
@@ -670,7 +670,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       })
     );
     
-    toast.info('Order cancelled');
+    toast.info('Buyurtma bekor qilindi');
   };
   
   return (

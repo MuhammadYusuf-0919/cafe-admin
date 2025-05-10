@@ -26,7 +26,8 @@ import {
 } from "@/components/ui/form";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LoadingSpinner } from "@/components/loading-spinner";
-import { Utensils } from "lucide-react";
+import { AlertTriangle, ChefHat, UserRound, Utensils } from "lucide-react";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -36,9 +37,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const demoAccounts = [
-  { email: "manager@mesa.com", password: "manager123", role: "Menejer" },
-  { email: "chef@mesa.com", password: "chef123", role: "Oshpaz" },
-  { email: "waiter@mesa.com", password: "waiter123", role: "Ofitsiant" },
+  { email: "manager@mesa.com", password: "manager123", role: "Menejer", icon: <UserRound className="mr-2 h-5 w-5" />, },
+  { email: "chef@mesa.com", password: "chef123", role: "Oshpaz", icon: <ChefHat className="mr-2 h-5 w-5" />, },
+  { email: "waiter@mesa.com", password: "waiter123", role: "Ofitsiant", icon: <AlertTriangle className="mr-2 h-5 w-5" />, },
 ];
 
 const Login = () => {
@@ -64,8 +65,18 @@ const Login = () => {
     }
   };
 
-  const loginWithDemo = async (email: string, password: string) => {
+  const loginWithDemo = async (role: string, email: string, password: string) => {
     setError(null);
+    toast(
+      <div className="text-left">
+        <p className="font-semibold text-base">{role}</p>
+        <p className="text-sm">📧 <strong>Email:</strong> {email}</p>
+        <p className="text-sm">🔐 <strong>Parol:</strong> {password}</p>
+      </div>,
+      {
+        duration: 3000,
+      }
+    );
     form.setValue("email", email);
     form.setValue("password", password);
     try {
@@ -117,7 +128,7 @@ const Login = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="your.email@example.com" {...field} className="border- shadow-md focus:ring-2 focus:ring-teal-500" />
+                        <Input disabled={true} placeholder="your.email@example.com" {...field} className="border- shadow-md focus:ring-2 focus:ring-teal-500" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -131,7 +142,7 @@ const Login = () => {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="******" {...field} className="border- shadow-md focus:ring-2 focus:ring-teal-500" />
+                        <Input type="password" disabled={true} placeholder="******" {...field} className="border- shadow-md focus:ring-2 focus:ring-teal-500" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -148,7 +159,7 @@ const Login = () => {
                   </motion.div>
                 )}
 
-                <Button type="submit" className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-teal-500/20" disabled={isLoading}>
+                <Button disabled={true} type="submit" className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-teal-500/20">
                   {isLoading ? <LoadingSpinner /> : "Login"}
                 </Button>
               </form>
@@ -156,7 +167,7 @@ const Login = () => {
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             <div className="text-sm text-center text-gray-500 dark:text-gray-400">
-            Demo hisoblar:
+              Demo hisoblar:
             </div>
             <div className="grid grid-cols-3 gap-2 w-full">
               {demoAccounts.map((account) => (
@@ -164,10 +175,11 @@ const Login = () => {
                   key={account.email}
                   variant="outline"
                   size="sm"
-                  className="text-xs border- shadow-md hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-teal-900/20 dark:hover:text-teal-300"
-                  onClick={() => loginWithDemo(account.email, account.password)}
+                  className="text-xs text-primary border- shadow-md hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-teal-900/20 dark:hover:text-teal-300"
+                  onClick={() => loginWithDemo(account.role, account.email, account.password)}
                   disabled={isLoading}
                 >
+                  {account.icon}
                   {account.role}
                 </Button>
               ))}

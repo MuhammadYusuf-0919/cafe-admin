@@ -225,7 +225,7 @@ const Categories = () => {
               />
             </div>
           </div>
-          <DialogFooter className="grid gap-4">
+          <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
               Cancel
@@ -266,7 +266,7 @@ const Categories = () => {
               />
             </div>
           </div>
-          <DialogFooter className="grid gap-4">
+          <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
               Cancel
@@ -290,7 +290,7 @@ const Categories = () => {
               Are you sure you want to delete the category "{selectedCategory?.name}"? This action cannot be undone.
             </p>
           </div>
-          <DialogFooter className="grid gap-4">
+          <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
               Cancel

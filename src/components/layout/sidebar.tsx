@@ -14,7 +14,7 @@ import {
   Tag,
   LayoutGrid
 } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
@@ -39,15 +39,16 @@ export const Sidebar = () => {
     >
       <div className="p-4">
         <motion.div 
-          className="flex items-center gap-2 mb-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
-            <Utensils className="text-white h-5 w-5" />
-          </div>
-          <h1 className="text-xl font-bold bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Mesa Oasis</h1>
+          <Link to='/dashboard' className="flex items-center gap-2 mb-6">
+            <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
+              <Utensils className="text-white h-5 w-5" />
+            </div>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Mesa Oasis</h1>
+          </Link>
         </motion.div>
 
         <div className="mb-6">
