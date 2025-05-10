@@ -28,6 +28,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LoadingSpinner } from "@/components/loading-spinner";
 import { AlertTriangle, ChefHat, UserRound, Utensils } from "lucide-react";
 import { toast } from "sonner";
+import { Briefcase, UtensilsCrossed, Wine } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -37,9 +38,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const demoAccounts = [
-  { email: "manager@mesa.com", password: "manager123", role: "Menejer", icon: <UserRound className="mr-2 h-5 w-5" />, },
-  { email: "chef@mesa.com", password: "chef123", role: "Oshpaz", icon: <ChefHat className="mr-2 h-5 w-5" />, },
-  { email: "waiter@mesa.com", password: "waiter123", role: "Ofitsiant", icon: <AlertTriangle className="mr-2 h-5 w-5" />, },
+  { email: "manager@mesa.com", password: "manager123", role: "Menejer", icon: <Briefcase className="mr-2 h-5 w-5" />, },
+  { email: "chef@mesa.com", password: "chef123", role: "Oshpaz", icon: <UtensilsCrossed className="mr-2 h-5 w-5" />, },
+  { email: "waiter@mesa.com", password: "waiter123", role: "Ofitsiant", icon: <Wine className="mr-2 h-5 w-5" />, },
 ];
 
 const Login = () => {
