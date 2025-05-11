@@ -534,7 +534,7 @@ const Menu = () => {
           <DialogHeader>
             <DialogTitle className="text-xl font-bold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">Taom qo'shish</DialogTitle>
           </DialogHeader>
-          <ScrollArea className="dialog-content-scroll h-[400px] px-2">
+          <ScrollArea className="dialog-content-scroll md:h-[400px] h-full px-2">
             <div className="py-4 space-y-6 p-2">
               <ImageUpload
                 value={newMenuItem.image}
@@ -622,7 +622,7 @@ const Menu = () => {
           <DialogHeader>
             <DialogTitle className="text-xl font-bold bg-gradient-to-r from-teal-600 to-teal-400 bg-clip-text text-transparent">Taomni tahrirlash</DialogTitle>
           </DialogHeader>
-          <ScrollArea className="dialog-content-scroll h-[400px] px-2">
+          <ScrollArea className="dialog-content-scroll md:h-[400px] h-full px-2">
             <div className="py-4 space-y-6 px-2">
               {selectedMenuItem && (
                 <>

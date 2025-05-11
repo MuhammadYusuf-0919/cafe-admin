@@ -22,6 +22,7 @@ import {
   Calendar,
   Clock
 } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Staff role types
 type StaffRole = "manager" | "chef" | "waiter" | "cashier" | "cleaner";
@@ -431,71 +432,73 @@ const StaffOverview = () => {
           <DialogHeader>
             <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Xodimni qo'shing</DialogTitle>
           </DialogHeader>
-          <div className="py-4 space-y-4">
-            <div>
-              <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">To'liq ismi</Label>
-              <Input
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
+          <ScrollArea className="dialog-content-scroll md:h-[400px] h-full px-2">
+            <div className="py-4 space-y-4 px-2">
+              <div>
+                <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">To'liq ismi</Label>
+                <Input
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="role" className="text-sm font-medium text-gray-700 dark:text-gray-300">Rol</Label>
+                <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
+                  <SelectTrigger id="role" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
+                    <SelectValue placeholder="Rolni tanlang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="manager">Menejer</SelectItem>
+                    <SelectItem value="chef">Oshpaz</SelectItem>
+                    <SelectItem value="waiter">Ofitsiant</SelectItem>
+                    <SelectItem value="cashier">Kassir</SelectItem>
+                    <SelectItem value="cleaner">Tozalash vositasi</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">Elektron pochta</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</Label>
+                <Input
+                  id="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="startDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Boshlanishi sanasi</Label>
+                <Input
+                  id="startDate"
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="schedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Ish jadvali</Label>
+                <Input
+                  id="schedule"
+                  value={schedule}
+                  onChange={(e) => setSchedule(e.target.value)}
+                  placeholder="e.g. Mon-Fri, 9am-5pm"
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
             </div>
-            <div>
-              <Label htmlFor="role" className="text-sm font-medium text-gray-700 dark:text-gray-300">Rol</Label>
-              <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
-                <SelectTrigger id="role" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Rolni tanlang" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="manager">Menejer</SelectItem>
-                  <SelectItem value="chef">Oshpaz</SelectItem>
-                  <SelectItem value="waiter">Ofitsiant</SelectItem>
-                  <SelectItem value="cashier">Kassir</SelectItem>
-                  <SelectItem value="cleaner">Tozalash vositasi</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">Elektron pochta</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</Label>
-              <Input
-                id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="startDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Boshlanishi sanasi</Label>
-              <Input
-                id="startDate"
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="schedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Ish jadvali</Label>
-              <Input
-                id="schedule"
-                value={schedule}
-                onChange={(e) => setSchedule(e.target.value)}
-                placeholder="e.g. Mon-Fri, 9am-5pm"
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-          </div>
+          </ScrollArea>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
@@ -515,85 +518,87 @@ const StaffOverview = () => {
           <DialogHeader>
             <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Xodimni tahrirlash</DialogTitle>
           </DialogHeader>
-          <div className="py-4 space-y-4">
-            <div>
-              <Label htmlFor="editName" className="text-sm font-medium text-gray-700 dark:text-gray-300">To'liq ism</Label>
-              <Input
-                id="editName"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editRole" className="text-sm font-medium text-gray-700 dark:text-gray-300">Rol</Label>
-              <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
-                <SelectTrigger id="editRole" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Rolni tanlang" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="manager">Menejer</SelectItem>
-                  <SelectItem value="chef">Oshpaz</SelectItem>
-                  <SelectItem value="waiter">Ofitsiant</SelectItem>
-                  <SelectItem value="cashier">Kassir</SelectItem>
-                  <SelectItem value="cleaner">Tozalash vositasi</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label htmlFor="editEmail" className="text-sm font-medium text-gray-700 dark:text-gray-300">Elektron pochta</Label>
-              <Input
-                id="editEmail"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editPhone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</Label>
-              <Input
-                id="editPhone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editStartDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Boshlanish sanasi</Label>
-              <Input
-                id="editStartDate"
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editSchedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Ish jadvali</Label>
-              <Input
-                id="editSchedule"
-                value={schedule}
-                onChange={(e) => setSchedule(e.target.value)}
-                placeholder="masalan: Dush-Jum, 9:00-17:00"
-                className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
-            <div>
-              <Label htmlFor="editStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Holati</Label>
-              <Select value={status} onValueChange={(value) => setStatus(value as "active" | "on-leave" | "inactive")}>
-                <SelectTrigger id="editStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Holatni tanlang" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="active">Faol</SelectItem>
-                  <SelectItem value="on-leave">Ta’til</SelectItem>
-                  <SelectItem value="inactive">Nofaol</SelectItem>
+          <ScrollArea className="dialog-content-scroll md:h-[400px] h-[500px] px-2">
+            <div className="py-4 space-y-4 px-2">
+              <div>
+                <Label htmlFor="editName" className="text-sm font-medium text-gray-700 dark:text-gray-300">To'liq ism</Label>
+                <Input
+                  id="editName"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="editRole" className="text-sm font-medium text-gray-700 dark:text-gray-300">Rol</Label>
+                <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
+                  <SelectTrigger id="editRole" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
+                    <SelectValue placeholder="Rolni tanlang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="manager">Menejer</SelectItem>
+                    <SelectItem value="chef">Oshpaz</SelectItem>
+                    <SelectItem value="waiter">Ofitsiant</SelectItem>
+                    <SelectItem value="cashier">Kassir</SelectItem>
+                    <SelectItem value="cleaner">Tozalash vositasi</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="editEmail" className="text-sm font-medium text-gray-700 dark:text-gray-300">Elektron pochta</Label>
+                <Input
+                  id="editEmail"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="editPhone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</Label>
+                <Input
+                  id="editPhone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="editStartDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Boshlanish sanasi</Label>
+                <Input
+                  id="editStartDate"
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="editSchedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Ish jadvali</Label>
+                <Input
+                  id="editSchedule"
+                  value={schedule}
+                  onChange={(e) => setSchedule(e.target.value)}
+                  placeholder="masalan: Dush-Jum, 9:00-17:00"
+                  className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="editStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Holati</Label>
+                <Select value={status} onValueChange={(value) => setStatus(value as "active" | "on-leave" | "inactive")}>
+                  <SelectTrigger id="editStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
+                    <SelectValue placeholder="Holatni tanlang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="active">Faol</SelectItem>
+                    <SelectItem value="on-leave">Ta’til</SelectItem>
+                    <SelectItem value="inactive">Nofaol</SelectItem>
 
-                </SelectContent>
-              </Select>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-          </div>
+          </ScrollArea>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
