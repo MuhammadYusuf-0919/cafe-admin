@@ -31,13 +31,13 @@ const Tables = () => {
       console.log("Starting order for table: ", selectedTable);
       setActiveTable(selectedTable && selectedTable);
       setShowOrderDialog(false);
-  
+
       navigate("/new-order");
     } else {
       console.warn("No selected table found");
     }
   };
-  
+
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -94,7 +94,7 @@ const Tables = () => {
   };
 
   return (
-    <AppLayout title="Tables">
+    <AppLayout title="Stollar">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -102,9 +102,9 @@ const Tables = () => {
       >
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-teal-600 dark:text-teal-400">Restaurant Tables</h1>
+            <h1 className="text-2xl font-bold text-teal-600 dark:text-teal-400">Restoran stollari</h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Select a table to place an order or view its status
+              Buyurtma berish yoki uning holatini ko'rish uchun stolni tanlang
             </p>
           </div>
           <Button
@@ -112,7 +112,7 @@ const Tables = () => {
             className="flex items-center gap-2"
             onClick={() => navigate("/tables-management")}
           >
-            Manage Tables <ArrowRight className="h-4 w-4" />
+            Stollarni boshqarish <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
       </motion.div>
@@ -146,7 +146,7 @@ const Tables = () => {
                     ></span>
                   </div>
                   <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                    Table {table.number}
+                    Stol {table.number}
                   </h3>
                   <div className="flex items-center justify-center text-sm text-gray-500 dark:text-gray-400 mb-2">
                     <Users className="mr-1 h-4 w-4" /> {table.capacity} Seats
@@ -170,7 +170,7 @@ const Tables = () => {
       <Dialog open={showOrderDialog} onOpenChange={setShowOrderDialog}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-teal-600 dark:text-teal-400">Table {selectedTable?.number}</DialogTitle>
+            <DialogTitle className="text-teal-600 dark:text-teal-400">Stol {selectedTable?.number}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="flex items-center space-x-2">
@@ -184,7 +184,7 @@ const Tables = () => {
             </div>
             <div className="flex items-center text-gray-500 dark:text-gray-400">
               <Users className="mr-2 h-4 w-4" />
-              <span>{selectedTable?.capacity} seat capacity</span>
+              <span>{selectedTable?.capacity} o‘rindiq sig‘imi</span>
             </div>
 
             {selectedTable?.status === "free" ? (
@@ -193,7 +193,7 @@ const Tables = () => {
                 variant="teal"
                 className="w-full mt-4"
               >
-                Start New Order <ArrowRight className="ml-2 h-4 w-4" />
+                Yangi Buyurtma Boshlash <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             ) : selectedTable?.status === "occupied" ? (
               <Button
@@ -201,11 +201,11 @@ const Tables = () => {
                 variant="teal"
                 className="w-full mt-4"
               >
-                View/Update Order <ArrowRight className="ml-2 h-4 w-4" />
+                Buyurtmani Ko‘rish/Yangilash <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             ) : (
               <Button disabled className="w-full mt-4">
-                Reserved
+                Band qilingan
               </Button>
             )}
           </div>

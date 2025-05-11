@@ -20,7 +20,7 @@ import { toast } from "sonner";
 const TablesManagement = () => {
   const { user } = useAuth();
   const { tables, addTable, updateTable, deleteTable, loading } = useData();
-  
+
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -29,11 +29,11 @@ const TablesManagement = () => {
   const [tableCapacity, setTableCapacity] = useState<number>(2);
   const [tableStatus, setTableStatus] = useState<string>("free");
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   // Filtered tables based on search
   const filteredTables = tables.filter(
-    (table) => 
-      table.number.toString().includes(searchQuery) || 
+    (table) =>
+      table.number.toString().includes(searchQuery) ||
       table.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
       table.capacity.toString().includes(searchQuery)
   );
@@ -62,20 +62,20 @@ const TablesManagement = () => {
       toast.error("Stol raqami 0 dan katta bo'lishi kerak");
       return;
     }
-    
+
     // Check if table number already exists
     const tableExists = tables.some(table => table.number === tableNumber);
     if (tableExists) {
       toast.error(`${tableNumber}-stol allaqachon mavjud`);
       return;
     }
-    
+
     addTable({
       number: tableNumber,
       capacity: tableCapacity,
       status: tableStatus as "free" | "occupied" | "reserved"
     });
-    
+
     setTableNumber(0);
     setTableCapacity(2);
     setTableStatus("free");
@@ -86,29 +86,29 @@ const TablesManagement = () => {
   // Handle update table
   const handleUpdateTable = () => {
     if (!selectedTable) return;
-    
+
     if (tableNumber <= 0) {
       toast.error("Stol raqami 0 dan katta bo'lishi kerak");
       return;
     }
-    
+
     // Check if the new table number already exists (except the current table)
-    const tableExists = tables.some(table => 
+    const tableExists = tables.some(table =>
       table.number === tableNumber && table.id !== selectedTable.id
     );
-    
+
     if (tableExists) {
       toast.error(`${tableNumber}-stol allaqachon mavjud`);
       return;
     }
-    
+
     updateTable(selectedTable.id, {
       ...selectedTable,
       number: tableNumber,
       capacity: tableCapacity,
       status: tableStatus as "free" | "occupied" | "reserved"
     });
-    
+
     setSelectedTable(null);
     setIsEditDialogOpen(false);
     toast.success(`${tableNumber}-stol muvaffaqiyatli yangilandi`);
@@ -117,7 +117,7 @@ const TablesManagement = () => {
   // Handle delete table
   const handleConfirmDelete = () => {
     if (!selectedTable) return;
-    
+
     deleteTable(selectedTable.id);
     setSelectedTable(null);
     setIsDeleteDialogOpen(false);
@@ -137,8 +137,8 @@ const TablesManagement = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -175,7 +175,7 @@ const TablesManagement = () => {
   };
 
   return (
-    <AppLayout title="Tables Management">
+    <AppLayout title="Stollarni boshqarish">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -183,9 +183,9 @@ const TablesManagement = () => {
       >
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">Tables Management</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">Stollarni boshqarish</h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Add, edit, or remove tables from your restaurant
+              Restoraningizdagi stollarni qo'shing, tahrirlang yoki o'chiring
             </p>
           </div>
           <Button
@@ -197,7 +197,7 @@ const TablesManagement = () => {
             }}
             className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white shadow-lg hover:shadow-teal-500/20 transition-all duration-300"
           >
-            <Plus className="mr-2 h-4 w-4" /> Add Table
+            <Plus className="mr-2 h-4 w-4" /> Stol qo'shish
           </Button>
         </div>
       </motion.div>
@@ -205,7 +205,7 @@ const TablesManagement = () => {
       <div className="mb-6">
         <div className="relative w-full sm:w-64">
           <Input
-            placeholder="Search tables..."
+            placeholder="Stollarni qidirish..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 border- shadow-md focus:ring-2 focus:ring-teal-500"
@@ -253,11 +253,11 @@ const TablesManagement = () => {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border-0 rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">Add Table</DialogTitle>
+            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">Stol qo'shish</DialogTitle>
           </DialogHeader>
           <div className="py-4 space-y-4">
             <div>
-              <Label htmlFor="tableNumber" className="text-sm font-medium text-gray-700 dark:text-gray-300">Table Number</Label>
+              <Label htmlFor="tableNumber" className="text-sm font-medium text-gray-700 dark:text-gray-300">Stol raqami</Label>
               <Input
                 id="tableNumber"
                 type="number"
@@ -268,7 +268,7 @@ const TablesManagement = () => {
               />
             </div>
             <div>
-              <Label htmlFor="tableCapacity" className="text-sm font-medium text-gray-700 dark:text-gray-300">Seating Capacity</Label>
+              <Label htmlFor="tableCapacity" className="text-sm font-medium text-gray-700 dark:text-gray-300">O'tirish sig'imi</Label>
               <Input
                 id="tableCapacity"
                 type="number"
@@ -280,15 +280,15 @@ const TablesManagement = () => {
               />
             </div>
             <div>
-              <Label htmlFor="tableStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</Label>
+              <Label htmlFor="tableStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Holati</Label>
               <Select value={tableStatus} onValueChange={setTableStatus}>
                 <SelectTrigger id="tableStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Select status" />
+                  <SelectValue placeholder="Holatni tanlang" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="free">Available</SelectItem>
-                  <SelectItem value="occupied">Occupied</SelectItem>
-                  <SelectItem value="reserved">Reserved</SelectItem>
+                  <SelectItem value="free">Mavjud</SelectItem>
+                  <SelectItem value="occupied">Band qilingan</SelectItem>
+                  <SelectItem value="reserved">Zaxiralangan</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -296,11 +296,11 @@ const TablesManagement = () => {
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
-              Cancel
+              Bekor qilish
             </Button>
             <Button onClick={handleAddTable}
               className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white shadow-lg hover:shadow-teal-500/20">
-              Add Table
+              Stol qo'shish
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -310,11 +310,11 @@ const TablesManagement = () => {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border- rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">Edit Table</DialogTitle>
+            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">Stolni tahrirlash</DialogTitle>
           </DialogHeader>
           <div className="py-4 space-y-4">
             <div>
-              <Label htmlFor="editTableNumber" className="text-sm font-medium text-gray-700 dark:text-gray-300">Table Number</Label>
+              <Label htmlFor="editTableNumber" className="text-sm font-medium text-gray-700 dark:text-gray-300">Stol raqami</Label>
               <Input
                 id="editTableNumber"
                 type="number"
@@ -325,7 +325,7 @@ const TablesManagement = () => {
               />
             </div>
             <div>
-              <Label htmlFor="editTableCapacity" className="text-sm font-medium text-gray-700 dark:text-gray-300">Seating Capacity</Label>
+              <Label htmlFor="editTableCapacity" className="text-sm font-medium text-gray-700 dark:text-gray-300">O'tirish sig'imi</Label>
               <Input
                 id="editTableCapacity"
                 type="number"
@@ -337,15 +337,15 @@ const TablesManagement = () => {
               />
             </div>
             <div>
-              <Label htmlFor="editTableStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</Label>
+              <Label htmlFor="editTableStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Holati</Label>
               <Select value={tableStatus} onValueChange={setTableStatus}>
                 <SelectTrigger id="editTableStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Select status" />
+                  <SelectValue placeholder="Holatni tanlang" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="free">Available</SelectItem>
-                  <SelectItem value="occupied">Occupied</SelectItem>
-                  <SelectItem value="reserved">Reserved</SelectItem>
+                  <SelectItem value="free">Mavjud</SelectItem>
+                  <SelectItem value="occupied">Band qilingan</SelectItem>
+                  <SelectItem value="reserved">Zaxiralangan</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -353,11 +353,11 @@ const TablesManagement = () => {
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
-              Cancel
+              Bekor qilish
             </Button>
             <Button onClick={handleUpdateTable}
               className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white shadow-lg hover:shadow-teal-500/20">
-              Update Table
+              Stolni tahrirlash
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -367,21 +367,22 @@ const TablesManagement = () => {
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border-0 rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-xl text-red-500">Delete Table</DialogTitle>
+            <DialogTitle className="text-xl text-red-500">Stolni o'chirish</DialogTitle>
           </DialogHeader>
           <div className="py-4">
             <p className="text-gray-600 dark:text-gray-400">
-              Are you sure you want to delete Table #{selectedTable?.number}? This action cannot be undone.
+              Siz rostdan ham #{selectedTable?.number}-jadvalni o‘chirib tashlamoqchimisiz? Bu amalni bekor qilib bo‘lmaydi.
             </p>
+
           </div>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
-              Cancel
+              Bekor qilish
             </Button>
             <Button variant="destructive" onClick={handleConfirmDelete}
               className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-red-500/20 border-0">
-              Delete
+              O'chirish
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -417,25 +418,24 @@ const TableCard = ({
           </div>
           <div className={`absolute -bottom-1 right-0 w-4 h-4 rounded-full ${getStatusColor(table.status)} border-2 border-white dark:border-gray-800`}></div>
         </div>
-        
+
         <div className="text-center mb-3">
-          <h3 className="text-lg font-medium">Table {table.number}</h3>
+          <h3 className="text-lg font-medium">Stol {table.number}</h3>
           <div className="flex items-center justify-center mt-1">
             <Users className="h-4 w-4 mr-1 text-gray-500" />
-            <span className="text-sm text-gray-600 dark:text-gray-400">{table.capacity} Seats</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">{table.capacity} O'rindiqlar</span>
           </div>
         </div>
-        
+
         <div className="text-center mt-auto">
-          <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-            table.status === "free" ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" : 
-            table.status === "occupied" ? "bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300" : 
-            "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
-          }`}>
+          <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${table.status === "free" ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" :
+            table.status === "occupied" ? "bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300" :
+              "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
+            }`}>
             {getStatusText(table.status)}
           </span>
         </div>
-        
+
         <div className="flex justify-center mt-3 space-x-2 pt-3 border-t border-gray-100 dark:border-gray-800 group-hover:opacity-100 transition-opacity">
           <Button
             variant="ghost"

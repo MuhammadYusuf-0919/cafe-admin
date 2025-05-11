@@ -11,14 +11,14 @@ import {
 } from "@/components/ui/select";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { 
-  Search, 
-  Plus, 
-  Edit, 
-  Trash2, 
+import {
+  Search,
+  Plus,
+  Edit,
+  Trash2,
   UserRound,
-  Mail, 
-  Phone, 
+  Mail,
+  Phone,
   Calendar,
   Clock
 } from "lucide-react";
@@ -124,14 +124,14 @@ const StaffOverview = () => {
   const [startDate, setStartDate] = useState("");
   const [schedule, setSchedule] = useState("");
   const [status, setStatus] = useState<"active" | "on-leave" | "inactive">("active");
-  
+
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filtered staff members based on search
   const filteredStaff = staffMembers.filter(
-    (staff) => 
-      staff.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    (staff) =>
+      staff.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       staff.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
       staff.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
       staff.status.toLowerCase().includes(searchQuery.toLowerCase())
@@ -143,7 +143,7 @@ const StaffOverview = () => {
       toast.error("Barcha kerakli maydonlarni toʻldiring");
       return;
     }
-    
+
     const newStaff: StaffMember = {
       id: Date.now().toString(),
       name,
@@ -154,7 +154,7 @@ const StaffOverview = () => {
       schedule: schedule || "To be assigned",
       status: "active"
     };
-    
+
     setStaffMembers([...staffMembers, newStaff]);
     resetForm();
     setIsAddDialogOpen(false);
@@ -164,12 +164,12 @@ const StaffOverview = () => {
   // Edit staff member
   const handleEditStaff = () => {
     if (!selectedStaff) return;
-    
+
     if (!name || !email || !role || !phone) {
       toast.error("Barcha kerakli maydonlarni toʻldiring");
       return;
     }
-    
+
     const updatedStaff = staffMembers.map((staff) => {
       if (staff.id === selectedStaff.id) {
         return {
@@ -185,7 +185,7 @@ const StaffOverview = () => {
       }
       return staff;
     });
-    
+
     setStaffMembers(updatedStaff);
     resetForm();
     setIsEditDialogOpen(false);
@@ -195,11 +195,11 @@ const StaffOverview = () => {
   // Delete staff member
   const handleDeleteStaff = () => {
     if (!selectedStaff) return;
-    
+
     const updatedStaff = staffMembers.filter(
       (staff) => staff.id !== selectedStaff.id
     );
-    
+
     setStaffMembers(updatedStaff);
     setSelectedStaff(null);
     setIsDeleteDialogOpen(false);
@@ -287,8 +287,8 @@ const StaffOverview = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -298,7 +298,7 @@ const StaffOverview = () => {
   };
 
   return (
-    <AppLayout title="Staff Overview">
+    <AppLayout title="Xodimlar haqida umumiy ma'lumot">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -306,9 +306,9 @@ const StaffOverview = () => {
       >
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Staff Overview</h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Manage your restaurant staff members
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Xodimlar haqida umumiy ma'lumot</h1>
+            <p className="text-gray-600 to'q:matn-gray-400">
+              Restoran xodimlarini boshqaring
             </p>
           </div>
           <Button
@@ -318,7 +318,7 @@ const StaffOverview = () => {
             }}
             className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-teal-500/20 transition-all duration-300"
           >
-            <Plus className="mr-2 h-4 w-4" /> Add Staff
+            <Plus className="mr-2 h-4 w-4" /> Xodimni qo'shish
           </Button>
         </div>
       </motion.div>
@@ -326,7 +326,7 @@ const StaffOverview = () => {
       <div className="mb-6">
         <div className="relative w-full sm:w-64">
           <Input
-            placeholder="Search staff..."
+            placeholder="Xodimni qidirish..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 border- shadow-md focus:ring-2 focus:ring-teal-500"
@@ -350,50 +350,49 @@ const StaffOverview = () => {
                     <div className="relative mb-4">
                       <div className="w-20 h-20 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white">
                         {staff.avatar ? (
-                          <img 
-                            src={staff.avatar} 
-                            alt={staff.name} 
+                          <img
+                            src={staff.avatar}
+                            alt={staff.name}
                             className="w-full h-full object-cover rounded-full"
                           />
                         ) : (
                           <UserRound className="h-10 w-10" />
                         )}
                       </div>
-                      <span className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-white dark:border-gray-800 ${
-                        staff.status === "active" ? "bg-emerald-500" : 
-                        staff.status === "on-leave" ? "bg-amber-500" : 
-                        "bg-rose-500"
-                      }`}></span>
+                      <span className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-white dark:border-gray-800 ${staff.status === "active" ? "bg-emerald-500" :
+                        staff.status === "on-leave" ? "bg-amber-500" :
+                          "bg-rose-500"
+                        }`}></span>
                     </div>
-                    
+
                     <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 text-center mt-2">{staff.name}</h3>
-                    
+
                     <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mt-2 ${getRoleBadgeColor(staff.role)}`}>
                       {formatRoleName(staff.role)}
                     </span>
-                    
+
                     <div className="w-full mt-4 space-y-3">
                       <div className="flex items-start">
                         <Mail className="h-4 w-4 text-teal-500 mt-0.5 flex-shrink-0" />
                         <p className="text-sm text-gray-600 dark:text-gray-400 ml-2 overflow-hidden text-ellipsis">{staff.email}</p>
                       </div>
-                      
+
                       <div className="flex items-start">
                         <Phone className="h-4 w-4 text-teal-500 mt-0.5 flex-shrink-0" />
                         <p className="text-sm text-gray-600 dark:text-gray-400 ml-2">{staff.phone}</p>
                       </div>
-                      
+
                       <div className="flex items-start">
                         <Calendar className="h-4 w-4 text-teal-500 mt-0.5 flex-shrink-0" />
-                        <p className="text-sm text-gray-600 dark:text-gray-400 ml-2">Since {new Date(staff.startDate).toLocaleDateString()}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 ml-2">Buyon {new Date(staff.startDate).toLocaleDateString()}</p>
                       </div>
-                      
+
                       <div className="flex items-start">
                         <Clock className="h-4 w-4 text-teal-500 mt-0.5 flex-shrink-0" />
                         <p className="text-sm text-gray-600 dark:text-gray-400 ml-2">{staff.schedule}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex justify-center mt-4 space-x-2 pt-4 border-t border-gray-100 dark:border-gray-800 w-full">
                       <Button
                         variant="ghost"
@@ -401,7 +400,7 @@ const StaffOverview = () => {
                         onClick={() => openEditDialog(staff)}
                         className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 dark:hover:bg-teal-900/20"
                       >
-                        <Edit className="h-4 w-4 mr-1" /> Edit
+                        <Edit className="h-4 w-4 mr-1" /> Tahrirlash
                       </Button>
                       <Button
                         variant="ghost"
@@ -409,7 +408,7 @@ const StaffOverview = () => {
                         onClick={() => openDeleteDialog(staff)}
                         className="text-rose-500 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20"
                       >
-                        <Trash2 className="h-4 w-4 mr-1" /> Delete
+                        <Trash2 className="h-4 w-4 mr-1" /> O'chirish
                       </Button>
                     </div>
                   </div>
@@ -420,7 +419,7 @@ const StaffOverview = () => {
         ) : (
           <div className="col-span-full py-20 text-center">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              No staff members found. Add one to get started.
+              Hech qanday xodim topilmadi. Boshlash uchun bitta qo'shing.
             </p>
           </div>
         )}
@@ -430,11 +429,11 @@ const StaffOverview = () => {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border-0 rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Add Staff Member</DialogTitle>
+            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Xodimni qo'shing</DialogTitle>
           </DialogHeader>
           <div className="py-4 space-y-4">
             <div>
-              <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</Label>
+              <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">To'liq ismi</Label>
               <Input
                 id="name"
                 value={name}
@@ -443,22 +442,22 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="role" className="text-sm font-medium text-gray-700 dark:text-gray-300">Role</Label>
+              <Label htmlFor="role" className="text-sm font-medium text-gray-700 dark:text-gray-300">Rol</Label>
               <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
                 <SelectTrigger id="role" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Select role" />
+                  <SelectValue placeholder="Rolni tanlang" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="manager">Manager</SelectItem>
-                  <SelectItem value="chef">Chef</SelectItem>
-                  <SelectItem value="waiter">Waiter</SelectItem>
-                  <SelectItem value="cashier">Cashier</SelectItem>
-                  <SelectItem value="cleaner">Cleaner</SelectItem>
+                  <SelectItem value="manager">Menejer</SelectItem>
+                  <SelectItem value="chef">Oshpaz</SelectItem>
+                  <SelectItem value="waiter">Ofitsiant</SelectItem>
+                  <SelectItem value="cashier">Kassir</SelectItem>
+                  <SelectItem value="cleaner">Tozalash vositasi</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">Email</Label>
+              <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">Elektron pochta</Label>
               <Input
                 id="email"
                 type="email"
@@ -468,7 +467,7 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Phone</Label>
+              <Label htmlFor="phone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</Label>
               <Input
                 id="phone"
                 value={phone}
@@ -477,7 +476,7 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="startDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Start Date</Label>
+              <Label htmlFor="startDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Boshlanishi sanasi</Label>
               <Input
                 id="startDate"
                 type="date"
@@ -487,7 +486,7 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="schedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Work Schedule</Label>
+              <Label htmlFor="schedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Ish jadvali</Label>
               <Input
                 id="schedule"
                 value={schedule}
@@ -500,11 +499,11 @@ const StaffOverview = () => {
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
-              Cancel
+              Bekor qilish
             </Button>
             <Button onClick={handleAddStaff}
               className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-teal-500/20">
-              Add Staff
+              Xodimni qo'shish
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -514,11 +513,11 @@ const StaffOverview = () => {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border-0 rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Edit Staff Member</DialogTitle>
+            <DialogTitle className="text-xl bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent">Xodimni tahrirlash</DialogTitle>
           </DialogHeader>
           <div className="py-4 space-y-4">
             <div>
-              <Label htmlFor="editName" className="text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</Label>
+              <Label htmlFor="editName" className="text-sm font-medium text-gray-700 dark:text-gray-300">To'liq ism</Label>
               <Input
                 id="editName"
                 value={name}
@@ -527,22 +526,22 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="editRole" className="text-sm font-medium text-gray-700 dark:text-gray-300">Role</Label>
+              <Label htmlFor="editRole" className="text-sm font-medium text-gray-700 dark:text-gray-300">Rol</Label>
               <Select value={role} onValueChange={(value) => setRole(value as StaffRole)}>
                 <SelectTrigger id="editRole" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Select role" />
+                  <SelectValue placeholder="Rolni tanlang" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="manager">Manager</SelectItem>
-                  <SelectItem value="chef">Chef</SelectItem>
-                  <SelectItem value="waiter">Waiter</SelectItem>
-                  <SelectItem value="cashier">Cashier</SelectItem>
-                  <SelectItem value="cleaner">Cleaner</SelectItem>
+                  <SelectItem value="manager">Menejer</SelectItem>
+                  <SelectItem value="chef">Oshpaz</SelectItem>
+                  <SelectItem value="waiter">Ofitsiant</SelectItem>
+                  <SelectItem value="cashier">Kassir</SelectItem>
+                  <SelectItem value="cleaner">Tozalash vositasi</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label htmlFor="editEmail" className="text-sm font-medium text-gray-700 dark:text-gray-300">Email</Label>
+              <Label htmlFor="editEmail" className="text-sm font-medium text-gray-700 dark:text-gray-300">Elektron pochta</Label>
               <Input
                 id="editEmail"
                 type="email"
@@ -552,7 +551,7 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="editPhone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Phone</Label>
+              <Label htmlFor="editPhone" className="text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</Label>
               <Input
                 id="editPhone"
                 value={phone}
@@ -561,7 +560,7 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="editStartDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Start Date</Label>
+              <Label htmlFor="editStartDate" className="text-sm font-medium text-gray-700 dark:text-gray-300">Boshlanish sanasi</Label>
               <Input
                 id="editStartDate"
                 type="date"
@@ -571,25 +570,26 @@ const StaffOverview = () => {
               />
             </div>
             <div>
-              <Label htmlFor="editSchedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Work Schedule</Label>
+              <Label htmlFor="editSchedule" className="text-sm font-medium text-gray-700 dark:text-gray-300">Ish jadvali</Label>
               <Input
                 id="editSchedule"
                 value={schedule}
                 onChange={(e) => setSchedule(e.target.value)}
-                placeholder="e.g. Mon-Fri, 9am-5pm"
+                placeholder="masalan: Dush-Jum, 9:00-17:00"
                 className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500"
               />
             </div>
             <div>
-              <Label htmlFor="editStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Status</Label>
+              <Label htmlFor="editStatus" className="text-sm font-medium text-gray-700 dark:text-gray-300">Holati</Label>
               <Select value={status} onValueChange={(value) => setStatus(value as "active" | "on-leave" | "inactive")}>
                 <SelectTrigger id="editStatus" className="mt-2 border- shadow-md focus:ring-2 focus:ring-teal-500">
-                  <SelectValue placeholder="Select status" />
+                  <SelectValue placeholder="Holatni tanlang" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="on-leave">On Leave</SelectItem>
-                  <SelectItem value="inactive">Inactive</SelectItem>
+                  <SelectItem value="active">Faol</SelectItem>
+                  <SelectItem value="on-leave">Ta’til</SelectItem>
+                  <SelectItem value="inactive">Nofaol</SelectItem>
+
                 </SelectContent>
               </Select>
             </div>
@@ -597,11 +597,11 @@ const StaffOverview = () => {
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
-              Cancel
+              Bekor qilish
             </Button>
             <Button onClick={handleEditStaff}
               className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-teal-500/20">
-              Update Staff
+              Xodimni Yangilash
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -611,21 +611,22 @@ const StaffOverview = () => {
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-900 shadow-2xl border-0 rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-xl text-red-500">Delete Staff Member</DialogTitle>
+            <DialogTitle className="text-xl text-red-500">Xodimni O‘chirish</DialogTitle>
           </DialogHeader>
           <div className="py-4">
             <p className="text-gray-600 dark:text-gray-400">
-              Are you sure you want to delete {selectedStaff?.name}? This action cannot be undone.
+              Siz rostdan ham {selectedStaff?.name} xodimini o‘chirib tashlamoqchimisiz? Bu amalni bekor qilib bo‘lmaydi.
             </p>
           </div>
+
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}
               className="border- shadow-md hover:shadow-lg">
-              Cancel
+              Bekor qilish
             </Button>
             <Button variant="destructive" onClick={handleDeleteStaff}
               className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-red-500/20 border-0">
-              Delete
+              O'chirish
             </Button>
           </DialogFooter>
         </DialogContent>
