@@ -923,7 +923,7 @@ const Orders = () => {
                 {/* Buyurtma va ofitsiant ma'lumotlari */}
                 <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 gap-4 md:mb-6 mb-4">
                   {/* Buyurtma ma'lumotlari */}
-                  <Card>
+                  <Card className="border">
                     <CardContent className="p-5">
                       <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">
                         Buyurtma ma'lumotlari
@@ -952,7 +952,7 @@ const Orders = () => {
                   </Card>
 
                   {/* Ofitsiant ma'lumotlari */}
-                  <Card>
+                  <Card className="border">
                     <CardContent className="p-5">
                       <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Ofitsiant ma'lumotlari</h3>
                       <div className="flex items-center space-x-4">
@@ -978,7 +978,7 @@ const Orders = () => {
 
                 {/* Buyurtma tarkibi */}
                 <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma tarkibi</h3>
-                <Table>
+                <Table className="border">
                   <TableHeader>
                     <TableRow>
                       <TableHead>Taom</TableHead>
