@@ -978,40 +978,43 @@ const Orders = () => {
 
                 {/* Buyurtma tarkibi */}
                 <h3 className="font-semibold text-lg mb-3 text-teal-600 dark:text-teal-400">Buyurtma tarkibi</h3>
-                <Table className="border">
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Taom</TableHead>
-                      <TableHead>Miqdori</TableHead>
-                      <TableHead>Narxi</TableHead>
-                      <TableHead>Holati</TableHead>
-                      <TableHead>Jami</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {detailsOrder.items.map((item) => (
-                      <TableRow key={item.id}>
-                        <TableCell className="font-medium">{item.menuItem.name}</TableCell>
-                        <TableCell>{item.quantity}</TableCell>
-                        <TableCell>${item.menuItem.price.toFixed(2)}</TableCell>
-                        <TableCell>
-                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(item.status)}`}>
-                            {translateStatus(item.status)}
-                          </span>
-                        </TableCell>
-                        <TableCell className="font-medium">
-                          ${(item.quantity * item.menuItem.price).toFixed(2)}
-                        </TableCell>
+                <div className="border rounded-lg">
+
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Taom</TableHead>
+                        <TableHead>Miqdori</TableHead>
+                        <TableHead>Narxi</TableHead>
+                        <TableHead>Holati</TableHead>
+                        <TableHead>Jami</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                  <TableFooter>
-                    <TableRow>
-                      <TableCell colSpan={4} className="text-right">Jami</TableCell>
-                      <TableCell className="font-semibold">${detailsOrder.total.toFixed(2)}</TableCell>
-                    </TableRow>
-                  </TableFooter>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {detailsOrder.items.map((item) => (
+                        <TableRow key={item.id}>
+                          <TableCell className="font-medium">{item.menuItem.name}</TableCell>
+                          <TableCell>{item.quantity}</TableCell>
+                          <TableCell>${item.menuItem.price.toFixed(2)}</TableCell>
+                          <TableCell>
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusBadge(item.status)}`}>
+                              {translateStatus(item.status)}
+                            </span>
+                          </TableCell>
+                          <TableCell className="font-medium">
+                            ${(item.quantity * item.menuItem.price).toFixed(2)}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                    <TableFooter>
+                      <TableRow>
+                        <TableCell colSpan={4} className="text-right">Jami</TableCell>
+                        <TableCell className="font-semibold">${detailsOrder.total.toFixed(2)}</TableCell>
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                </div>
               </ScrollArea>
 
               {/* Tugmalar */}
